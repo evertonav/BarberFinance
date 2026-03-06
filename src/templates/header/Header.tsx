@@ -1,7 +1,7 @@
-import style from './ContainerRounded.module.css'
+import style from './Header.module.css'
 import type { ContainerTemplateProps } from '../types'
 
-export function ContainerRounded({
+export function Header({
   children,
   className,
   ...rest

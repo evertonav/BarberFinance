@@ -7,6 +7,7 @@ export enum IconsEnum {
   COPY = 'move_group',
   ARROW_BACK = 'arrow_back_ios',
   ARROW_FORWARD = 'arrow_forward_ios',
+  ADD = 'add',
 }
 
 export type IconsType = `${(typeof IconsEnum)[keyof typeof IconsEnum]}`

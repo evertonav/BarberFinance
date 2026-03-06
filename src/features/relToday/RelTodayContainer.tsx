@@ -1,19 +1,26 @@
-import { ContainerRounded } from '../../templates/containerRounded/ContainerRounded'
-import { DateToday } from './components/DateToday'
+import ShowIcon from '../../components/showIcon/ShowIcon'
+
+import { DateToday } from './components/dateToday/DateToday'
+import { Header } from '../../templates/header/Header'
 import style from './RelTodayContainer.module.css'
+import { ListCorteTotalized } from './components/listCorteTotalized/ListCorteTotalized'
 
 export function RelTodayContainer() {
   return (
     <div className={style.container}>
-      <div className={style.header}>Relatório diário</div>
+      <Header>Relatório diário</Header>
 
-      <div>
+      <div className={style.bodyRel}>
         <DateToday />
 
-        <ContainerRounded>Os cortes vãi ficar aqui</ContainerRounded>
+        <ListCorteTotalized />
       </div>
 
-      <div>Rodape</div>
+      <div className={style.footer}>
+        <button className={style.roundedButton}>
+          <ShowIcon nameIcon="add" />
+        </button>
+      </div>
     </div>
   )
 }

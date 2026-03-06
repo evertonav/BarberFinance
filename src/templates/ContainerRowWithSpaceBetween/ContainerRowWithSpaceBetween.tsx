@@ -1,7 +1,7 @@
-import style from './ContainerRounded.module.css'
 import type { ContainerTemplateProps } from '../types'
+import style from './ContainerRowWithSpaceBetween.module.css'
 
-export function ContainerRounded({
+export function ContainerRowWithSpaceBetween({
   children,
   className,
   ...rest

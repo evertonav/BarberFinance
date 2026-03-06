@@ -1,5 +1,5 @@
-import ShowIcon from '../../../components/showIcon/ShowIcon'
-import { ContainerRounded } from '../../../templates/containerRounded/ContainerRounded'
+import ShowIcon from '../../../../components/showIcon/ShowIcon'
+import { ContainerRounded } from '../../../../templates/containerRounded/ContainerRounded'
 import style from './DateToday.module.css'
 
 export function DateToday() {
