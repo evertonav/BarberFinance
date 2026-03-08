@@ -7,16 +7,6 @@
   background-color: #f4f6f9;
 }
 
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-  font-weight: 700;
-  width: 100%;
-  background-color: #ffffff;
-}
-
 .bodyRel {
   display: flex;
   flex-direction: column;
@@ -33,22 +23,4 @@
   justify-content: center; /* Centraliza horizontalmente */
   align-items: center;
   padding: 10px;
-}
-
-.roundedButton {
-  background-color: #28a745; /* Cor de fundo */
-  color: white; /* Cor do texto */
-  width: 60px;
-  height: 60px;
-  border: none; /* Remove a borda */
-  border-radius: 50%; /* Torna o botão arredondado */
-
-  font-size: 16px; /* Tamanho da fonte */
-  cursor: pointer; /* Mostra o cursor de ponteiro ao passar o mouse */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra */
-  transition: background-color 0.3s ease; /* Animação ao passar o mouse */
-}
-
-.roundedButton:hover {
-  background-color: #218838; /* Cor de fundo ao passar o mouse */
 }

@@ -4,6 +4,7 @@ import { DateToday } from './components/dateToday/DateToday'
 import { Header } from '../../templates/header/Header'
 import style from './RelTodayContainer.module.css'
 import { ListCorteTotalized } from './components/listCorteTotalized/ListCorteTotalized'
+import { RoundedButton } from '../../components/button/RoundedButton'
 
 export function RelTodayContainer() {
   return (
@@ -17,9 +18,9 @@ export function RelTodayContainer() {
       </div>
 
       <div className={style.footer}>
-        <button className={style.roundedButton}>
+        <RoundedButton>
           <ShowIcon nameIcon="add" />
-        </button>
+        </RoundedButton>
       </div>
     </div>
   )

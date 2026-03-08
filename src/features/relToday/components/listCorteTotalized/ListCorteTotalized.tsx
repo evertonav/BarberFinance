@@ -21,7 +21,7 @@ export function ListCorteTotalized() {
 
       <ContainerRowWithSpaceBetween>
         <LabelTitle>Total do dia</LabelTitle>
-        <LabelTitle color="Success">R$ 390,00</LabelTitle>
+        <LabelTitle color="Success">R$ 90,00</LabelTitle>
       </ContainerRowWithSpaceBetween>
     </ContainerRounded>
   )
