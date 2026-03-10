@@ -5,10 +5,16 @@ import { Header } from '../../templates/header/Header'
 import style from './RelTodayContainer.module.css'
 import { ListCorteTotalized } from './components/listCorteTotalized/ListCorteTotalized'
 import { RoundedButton } from '../../components/button/RoundedButton'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import {
+  ContainerModalFullScreen,
+  type ContainerModalElement,
+} from '../../templates/ContainerModal/ContainerModalFullScreen'
+import { CadCorte } from './components/CadCorte/CadCorte'
 
 export function RelTodayContainer() {
   const [date, setDate] = useState<Date>(new Date())
+  const modalAddCorte = useRef<ContainerModalElement>(null)
 
   return (
     <div className={style.container}>
@@ -21,13 +27,35 @@ export function RelTodayContainer() {
           onNext={(dateNext: Date) => setDate(dateNext)}
         />
 
-        <ListCorteTotalized />
+        <ListCorteTotalized
+          listCortes={{
+            cortes: [
+              { price: 10, quantity: 3 },
+              { price: 20, quantity: 4 },
+              { price: 40, quantity: 1 },
+            ],
+            totalized: 150,
+          }}
+        />
       </div>
 
       <div className={style.footer}>
         <RoundedButton>
-          <ShowIcon nameIcon="add" />
+          <ShowIcon
+            nameIcon="add"
+            onClick={() => {
+              modalAddCorte.current?.open()
+            }}
+          />
         </RoundedButton>
+
+        <ContainerModalFullScreen ref={modalAddCorte}>
+          <CadCorte
+            onSuccess={() => {
+              modalAddCorte.current?.close()
+            }}
+          />
+        </ContainerModalFullScreen>
       </div>
     </div>
   )

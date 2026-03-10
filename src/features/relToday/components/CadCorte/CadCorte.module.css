@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  width: 80%;
+  padding: 0px 20px 20px 20px;
+  background-color: #f4f6f9;
+}
+
+.headerColor {
+  background-color: #f4f6f9;
+}
+
+.body {
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.buttonSave {
+  width: 100%;
+  border-radius: 10px;
+}

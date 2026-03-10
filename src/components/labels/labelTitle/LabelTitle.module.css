@@ -1,6 +1,13 @@
 .title {
-  font-size: 17px;
   font-weight: 700;
+}
+
+.fontSize17 {
+  font-size: 17px;
+}
+
+.fontSize20 {
+  font-size: 20px;
 }
 
 .colorCommom {

@@ -1,0 +1,33 @@
+.colorRed {
+    color: rgb(202, 183, 7)
+}
+
+.messageError {
+    margin: 0;
+    margin-left: 5px;
+    padding: 0;
+}
+
+.containerCampo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.containerTexto {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.titulo {
+    margin-left: 5px;
+    font-family: "Noto Sans";
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    color: rgb(44, 44, 44);
+}
