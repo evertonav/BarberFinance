@@ -1,10 +1,8 @@
 .roundedButton {
-  background-color: #28a745; /* Cor de fundo */
   color: white; /* Cor do texto */
-  width: 60px;
+
   height: 60px;
   border: none; /* Remove a borda */
-  border-radius: 50%; /* Torna o botão arredondado */
 
   font-size: 16px; /* Tamanho da fonte */
   cursor: pointer; /* Mostra o cursor de ponteiro ao passar o mouse */
@@ -12,6 +10,34 @@
   transition: background-color 0.3s ease; /* Animação ao passar o mouse */
 }
 
-.roundedButton:hover {
+.buttonSuccess {
+  background-color: #28a745; /* Cor de fundo */
+}
+
+.buttonSuccess:hover {
   background-color: #218838; /* Cor de fundo ao passar o mouse */
+}
+
+.buttonCancel {
+  background: #6c757d;
+}
+
+.buttonCancel:hover {
+  background: #c82333;
+}
+
+.buttonTamanhoMinimo {
+  width: 60px;
+}
+
+.buttonTamanhoTotal {
+  width: 100%;
+}
+
+.formatCircle {
+  border-radius: 50%;
+}
+
+.formatRounded {
+  border-radius: 10px;
 }

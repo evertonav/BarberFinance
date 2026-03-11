@@ -1,4 +1,4 @@
-import { RoundedButton } from '../../../../components/button/RoundedButton'
+import { ButtonCommom } from '../../../../components/button/ButtonCommom'
 import InputCommonMUI from '../../../../components/input/InputCommonMUI'
 import { LabelTitle } from '../../../../components/labels/labelTitle/LabelTitle'
 import { ContainerRounded } from '../../../../templates/containerRounded/ContainerRounded'
@@ -7,9 +7,10 @@ import style from './CadCorte.module.css'
 
 interface CadCorteProps {
   onSuccess?: () => void
+  onCancel?: () => void
 }
 
-export function CadCorte({ onSuccess }: CadCorteProps) {
+export function CadCorte({ onSuccess, onCancel }: CadCorteProps) {
   return (
     <ContainerRounded className={style.container}>
       <Header className={style.headerColor}>
@@ -25,12 +26,25 @@ export function CadCorte({ onSuccess }: CadCorteProps) {
 
         <InputCommonMUI title="Data" />
 
-        <RoundedButton
-          className={style.buttonSave}
-          onClick={() => onSuccess && onSuccess()}
-        >
-          Gravar
-        </RoundedButton>
+        <div className={style.containerButton}>
+          <ButtonCommom
+            styleFormat="Rounded"
+            width="TamanhoTotal"
+            type="Cancel"
+            onClick={() => onCancel && onCancel()}
+          >
+            Cancelar
+          </ButtonCommom>
+
+          <ButtonCommom
+            styleFormat="Rounded"
+            width="TamanhoTotal"
+            type="Success"
+            onClick={() => onSuccess && onSuccess()}
+          >
+            Gravar
+          </ButtonCommom>
+        </div>
       </div>
     </ContainerRounded>
   )

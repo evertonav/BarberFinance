@@ -18,7 +18,8 @@
   gap: 20px;
 }
 
-.buttonSave {
-  width: 100%;
-  border-radius: 10px;
+.containerButton {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }

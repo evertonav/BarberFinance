@@ -4,13 +4,13 @@ import { DateToday } from './components/dateToday/DateToday'
 import { Header } from '../../templates/header/Header'
 import style from './RelTodayContainer.module.css'
 import { ListCorteTotalized } from './components/listCorteTotalized/ListCorteTotalized'
-import { RoundedButton } from '../../components/button/RoundedButton'
 import { useRef, useState } from 'react'
 import {
   ContainerModalFullScreen,
   type ContainerModalElement,
 } from '../../templates/ContainerModal/ContainerModalFullScreen'
 import { CadCorte } from './components/CadCorte/CadCorte'
+import { ButtonCommom } from '../../components/button/ButtonCommom'
 
 export function RelTodayContainer() {
   const [date, setDate] = useState<Date>(new Date())
@@ -40,14 +40,19 @@ export function RelTodayContainer() {
       </div>
 
       <div className={style.footer}>
-        <RoundedButton>
+        <ButtonCommom
+          onClick={() => modalAddCorte.current?.open()}
+          type="Success"
+          width="TamanhoMinimo"
+          styleFormat="Circle"
+        >
           <ShowIcon
             nameIcon="add"
             onClick={() => {
               modalAddCorte.current?.open()
             }}
           />
-        </RoundedButton>
+        </ButtonCommom>
 
         <ContainerModalFullScreen ref={modalAddCorte}>
           <CadCorte
