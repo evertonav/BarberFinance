@@ -51,7 +51,7 @@ export function CadCorte({ onSuccess, onCancel }: CadCorteProps) {
         <DatePicker
           label="Date"
           value={dayjs(new Date().valueOf())}
-          onChange={(newValue) => {}}
+          onChange={() => {}}
           sx={{
             '& .MuiInputLabel-root': {
               color: '#555 !important',
