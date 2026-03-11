@@ -11,9 +11,11 @@ import {
 } from '../../templates/ContainerModal/ContainerModalFullScreen'
 import { CadCorte } from './components/CadCorte/CadCorte'
 import { ButtonCommom } from '../../components/button/ButtonCommom'
+import type { Corte } from './types'
 
 export function RelTodayContainer() {
   const [date, setDate] = useState<Date>(new Date())
+  const [listCortes, setListCortes] = useState<Corte[]>([])
   const modalAddCorte = useRef<ContainerModalElement>(null)
 
   return (
@@ -29,12 +31,11 @@ export function RelTodayContainer() {
 
         <ListCorteTotalized
           listCortes={{
-            cortes: [
-              { price: 10, quantity: 3 },
-              { price: 20, quantity: 4 },
-              { price: 40, quantity: 1 },
-            ],
-            totalized: 150,
+            cortes: listCortes,
+            totalized: listCortes.reduce(
+              (total, corte) => total + corte.price * corte.quantity,
+              0,
+            ),
           }}
         />
       </div>
@@ -56,7 +57,11 @@ export function RelTodayContainer() {
 
         <ContainerModalFullScreen ref={modalAddCorte}>
           <CadCorte
-            onSuccess={() => {
+            onCancel={() => {
+              modalAddCorte.current?.close()
+            }}
+            onSuccess={(value: Corte) => {
+              setListCortes((prevList) => [...prevList, value])
               modalAddCorte.current?.close()
             }}
           />
