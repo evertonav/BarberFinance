@@ -43,7 +43,7 @@ export function RelTodayContainer() {
       <div className={style.footer}>
         <ButtonCommom
           onClick={() => modalAddCorte.current?.open()}
-          type="Success"
+          optionButton="Success"
           width="TamanhoMinimo"
           styleFormat="Circle"
         >

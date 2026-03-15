@@ -17,8 +17,8 @@ export function ListCorteTotalized({ listCortes }: ListCorteTotalizedProps) {
     <ContainerRounded className={style.containerList}>
       {listCortes.cortes.map((corte, index) => {
         return (
-          <>
-            <ContainerRowWithSpaceBetween key={index}>
+          <div className={style.itemList} key={index}>
+            <ContainerRowWithSpaceBetween>
               <Label color="Secondary" fontWeight="500">
                 {corte.quantity} corte(s) x R$ {corte.price.toFixed(2)}
               </Label>
@@ -29,7 +29,7 @@ export function ListCorteTotalized({ listCortes }: ListCorteTotalizedProps) {
             </ContainerRowWithSpaceBetween>
 
             <ContainerLine />
-          </>
+          </div>
         )
       })}
 

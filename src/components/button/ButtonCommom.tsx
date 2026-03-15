@@ -1,9 +1,9 @@
-import type { HTMLAttributes } from 'react'
+import type { ButtonHTMLAttributes } from 'react'
 import style from './ButtonCommom.module.css'
 
-interface ButtonCommomProps extends HTMLAttributes<HTMLButtonElement> {
+interface ButtonCommomProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   width?: 'TamanhoTotal' | 'TamanhoMinimo'
-  type?: 'Success' | 'Cancel'
+  optionButton?: 'Success' | 'Cancel'
   styleFormat?: 'Circle' | 'Rounded'
 }
 
@@ -11,7 +11,7 @@ export function ButtonCommom({
   children,
   className,
   width = 'TamanhoMinimo',
-  type = 'Success',
+  optionButton = 'Success',
   styleFormat = 'Circle',
   ...rest
 }: ButtonCommomProps) {
@@ -20,7 +20,7 @@ export function ButtonCommom({
       className={`${style.roundedButton} 
       ${style[`button${width}`]}
       ${style[`format${styleFormat}`]}
-      ${style[`button${type}`]}
+      ${style[`button${optionButton}`]}
       ${className}`}
       {...rest}
     >

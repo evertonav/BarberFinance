@@ -1,0 +1,59 @@
+import { DatePicker, type DatePickerProps } from '@mui/x-date-pickers'
+
+export function DateCommomMui({
+  slotProps,
+  format,
+  sx,
+  ...rest
+}: DatePickerProps) {
+  return (
+    <DatePicker
+      sx={sx}
+      slotProps={{
+        ...slotProps,
+
+        textField: {
+          InputLabelProps: {
+            shrink: true,
+          },
+          sx: {
+            '& .MuiInputLabel-root': {
+              color: '#555',
+            },
+
+            '& .MuiInputLabel-root.Mui-focused': {
+              color: '#555',
+            },
+
+            '& fieldset': {
+              border: '1px solid #d9d9d9',
+            },
+
+            '& .MuiInputLabel-root.Mui-error': {
+              color: '#d32f2f',
+            },
+
+            '&:hover .MuiPickersOutlinedInput-notchedOutline': {
+              borderColor: '#bfbfbf',
+            },
+
+            '& .MuiPickersOutlinedInput-root.Mui-focused .MuiPickersOutlinedInput-notchedOutline':
+              {
+                borderColor: '#28a745',
+              },
+          },
+
+          InputProps: {
+            sx: {
+              borderRadius: '8px',
+              fontSize: '14px',
+            },
+          },
+          fullWidth: true,
+        },
+      }}
+      format={format ? format : 'DD/MM/YYYY'}
+      {...rest}
+    />
+  )
+}
