@@ -4,11 +4,14 @@ import './index.css'
 import { AppRouter } from './routes/AppRouter.tsx'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { ReactQueryProvider } from './providers/ReactQueryProvider.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <AppRouter />
+      <ReactQueryProvider>
+        <AppRouter />
+      </ReactQueryProvider>
     </LocalizationProvider>
   </StrictMode>,
 )
