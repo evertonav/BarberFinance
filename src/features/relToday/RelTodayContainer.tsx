@@ -4,7 +4,7 @@ import { DateToday } from './components/dateToday/DateToday'
 import { Header } from '../../templates/header/Header'
 import style from './RelTodayContainer.module.css'
 import { ListCorteTotalized } from './components/listCorteTotalized/ListCorteTotalized'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import {
   ContainerModalFullScreen,
   type ContainerModalElement,
@@ -12,10 +12,11 @@ import {
 import { CadCorte } from './components/CadCorte/CadCorte'
 import { ButtonCommom } from '../../components/button/ButtonCommom'
 import type { Corte } from './types'
+import { useRelToday } from './hooks/RelTodayHook'
 
 export function RelTodayContainer() {
-  const [date, setDate] = useState<Date>(new Date())
-  const [listCortes, setListCortes] = useState<Corte[]>([])
+  const { date, listCortes, setDate, setListCortes, addEntradaCorte } =
+    useRelToday()
   const modalAddCorte = useRef<ContainerModalElement>(null)
 
   return (
@@ -61,8 +62,10 @@ export function RelTodayContainer() {
               modalAddCorte.current?.close()
             }}
             onSuccess={(value: Corte) => {
-              setListCortes((prevList) => [...prevList, value])
-              modalAddCorte.current?.close()
+              addEntradaCorte(value).then(() => {
+                setListCortes((prevList) => [...prevList, value])
+                modalAddCorte.current?.close()
+              })
             }}
           />
         </ContainerModalFullScreen>
