@@ -13,11 +13,13 @@ import { CadCorte } from './components/CadCorte/CadCorte'
 import { ButtonCommom } from '../../components/button/ButtonCommom'
 import type { Corte } from './types'
 import { useRelToday } from './hooks/RelTodayHook'
+import { useInvalidateQuery } from '../../hooks/InvalidateQueryHook'
+import { QueryKeyGetByListEntradaCorte } from '../../queryKey/QueryKeyGetEntradaCorte'
 
 export function RelTodayContainer() {
-  const { date, listCortes, setDate, setListCortes, addEntradaCorte } =
-    useRelToday()
+  const { date, listCortes, setDate, addEntradaCorte } = useRelToday()
   const modalAddCorte = useRef<ContainerModalElement>(null)
+  const { invalidateQuery } = useInvalidateQuery()
 
   return (
     <div className={style.container}>
@@ -63,7 +65,9 @@ export function RelTodayContainer() {
             }}
             onSuccess={(value: Corte) => {
               addEntradaCorte(value).then(() => {
-                setListCortes((prevList) => [...prevList, value])
+                invalidateQuery(
+                  QueryKeyGetByListEntradaCorte(date, 'teste@hotmail.com'),
+                )
                 modalAddCorte.current?.close()
               })
             }}

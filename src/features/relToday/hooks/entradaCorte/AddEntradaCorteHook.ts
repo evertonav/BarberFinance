@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
-import type { EntradaCorte } from '../../../../api/repositories/types'
-import { AddEntradaCorte } from '../../../../api/repositories/AddEntradaCorte'
+import type { EntradaCorte } from '../../../../api/repositories/entradaCorte/types'
+import { AddEntradaCorte } from '../../../../api/repositories/entradaCorte/AddEntradaCorte'
 import toast from 'react-hot-toast'
 import type { DocumentData, DocumentReference } from 'firebase/firestore'
 import type { Corte } from '../../types'
@@ -23,10 +23,10 @@ export function useAddEntradaCorte() {
     value: Corte,
   ): Promise<DocumentReference<DocumentData, DocumentData>> {
     return await entradaCorteAdd.mutateAsync({
-      date: new Date().valueOf(),
+      date: new Date(),
       price: value.price,
       quantity: value.quantity,
-      user: 'luciobarbeiro@hotmail.com',
+      user: 'teste@hotmail.com',
     })
   }
 
