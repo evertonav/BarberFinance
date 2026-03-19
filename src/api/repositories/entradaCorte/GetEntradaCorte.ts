@@ -1,10 +1,4 @@
-import {
-  collection,
-  getDocs,
-  query,
-  Timestamp,
-  where,
-} from 'firebase/firestore'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../../FirebaseConnection'
 import { nameTableEntradaCorte, type EntradaCorte } from './types'
 
