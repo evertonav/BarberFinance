@@ -7,12 +7,18 @@ import { LabelTitle } from '../../../../components/labels/labelTitle/LabelTitle'
 import { ContainerLine } from '../../../../templates/ContainerLine/ContainerLine'
 import { Label } from '../../../../components/labels/Label'
 import type { ListCorteWithTotalized } from './types'
+import ShowIcon from '../../../../components/showIcon/ShowIcon'
+import type { Corte } from '../../types'
 
 interface ListCorteTotalizedProps {
   listCortes: ListCorteWithTotalized
+  onDelete?: (corte: Corte) => void
 }
 
-export function ListCorteTotalized({ listCortes }: ListCorteTotalizedProps) {
+export function ListCorteTotalized({
+  listCortes,
+  onDelete,
+}: ListCorteTotalizedProps) {
   return (
     <ContainerRounded className={style.containerList}>
       {listCortes.cortes.map((corte, index) => {
@@ -23,9 +29,19 @@ export function ListCorteTotalized({ listCortes }: ListCorteTotalizedProps) {
                 {corte.quantity} corte(s) x R$ {corte.price.toFixed(2)}
               </Label>
 
-              <Label fontWeight="700">
-                R$ {(corte.price * corte.quantity).toFixed(2)}
-              </Label>
+              <div className={style.containerValueItemAndDelete}>
+                <Label fontWeight="700">
+                  R$ {(corte.price * corte.quantity).toFixed(2)}
+                </Label>
+
+                <ShowIcon
+                  onClick={() => {
+                    onDelete && onDelete(corte)
+                  }}
+                  className={style.iconDelete}
+                  nameIcon="delete"
+                />
+              </div>
             </ContainerRowWithSpaceBetween>
 
             <ContainerLine />

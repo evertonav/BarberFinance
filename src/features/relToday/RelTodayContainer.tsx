@@ -19,7 +19,8 @@ import { auth } from '../../api/FirebaseConnection'
 import toast from 'react-hot-toast'
 
 export function RelTodayContainer() {
-  const { date, listCortes, setDate, addEntradaCorte } = useRelToday()
+  const { date, listCortes, setDate, addEntradaCorte, deleteByIdEntradaCorte } =
+    useRelToday()
   const modalAddCorte = useRef<ContainerModalElement>(null)
   const { invalidateQuery } = useInvalidateQuery()
 
@@ -35,6 +36,18 @@ export function RelTodayContainer() {
         />
 
         <ListCorteTotalized
+          onDelete={(corte: Corte) => {
+            if (!corte.id) {
+              toast.error('Não é possível deletar um registro que não tem id!')
+              return
+            }
+
+            deleteByIdEntradaCorte(corte.id!).then(() => {
+              invalidateQuery(
+                QueryKeyGetByListEntradaCorte(date, auth.currentUser?.email!),
+              )
+            })
+          }}
           listCortes={{
             cortes: listCortes,
             totalized: listCortes.reduce(

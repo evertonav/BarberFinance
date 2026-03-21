@@ -10,3 +10,17 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.containerValueItemAndDelete {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.iconDelete {
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 20px;
+}
