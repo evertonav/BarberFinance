@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useAddEntradaCorte } from './entradaCorte/AddEntradaCorteHook'
 import { useGetByListEntradaCorte } from './entradaCorte/GetByListEntradaCorteHook'
+import { auth } from '../../../api/FirebaseConnection'
+import type { Corte } from '../types'
 
 export function useRelToday() {
   const [date, setDate] = useState<Date>(new Date())
@@ -8,7 +10,7 @@ export function useRelToday() {
   const { addEntradaCorte } = useAddEntradaCorte()
   const { listEntradaCorte } = useGetByListEntradaCorte(
     date,
-    'teste@hotmail.com',
+    auth.currentUser?.email || '',
   )
 
   return {
@@ -19,7 +21,8 @@ export function useRelToday() {
       return {
         price: item.price,
         quantity: item.quantity,
+        date: item.date,
       }
-    }),
+    }) as Corte[],
   }
 }

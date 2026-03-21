@@ -15,6 +15,8 @@ import type { Corte } from './types'
 import { useRelToday } from './hooks/RelTodayHook'
 import { useInvalidateQuery } from '../../hooks/InvalidateQueryHook'
 import { QueryKeyGetByListEntradaCorte } from '../../queryKey/QueryKeyGetEntradaCorte'
+import { auth } from '../../api/FirebaseConnection'
+import toast from 'react-hot-toast'
 
 export function RelTodayContainer() {
   const { date, listCortes, setDate, addEntradaCorte } = useRelToday()
@@ -60,13 +62,24 @@ export function RelTodayContainer() {
 
         <ContainerModalFullScreen ref={modalAddCorte}>
           <CadCorte
+            corte={{ date: date }}
             onCancel={() => {
               modalAddCorte.current?.close()
             }}
             onSuccess={(value: Corte) => {
-              addEntradaCorte(value).then(() => {
+              if (!auth.currentUser?.email) {
+                toast.error(
+                  'Usuário não autenticado. Por favor, faça login novamente.',
+                )
+                return
+              }
+
+              addEntradaCorte(value, auth.currentUser?.email!).then(() => {
                 invalidateQuery(
-                  QueryKeyGetByListEntradaCorte(date, 'teste@hotmail.com'),
+                  QueryKeyGetByListEntradaCorte(
+                    value.date,
+                    auth.currentUser?.email!,
+                  ),
                 )
                 modalAddCorte.current?.close()
               })

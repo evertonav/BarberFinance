@@ -21,12 +21,13 @@ export function useAddEntradaCorte() {
 
   async function addEntradaCorte(
     value: Corte,
+    user: string,
   ): Promise<DocumentReference<DocumentData, DocumentData>> {
     return await entradaCorteAdd.mutateAsync({
-      date: new Date(),
+      date: value.date,
       price: value.price,
       quantity: value.quantity,
-      user: 'teste@hotmail.com',
+      user: user,
     })
   }
 

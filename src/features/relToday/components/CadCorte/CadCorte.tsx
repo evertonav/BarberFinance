@@ -14,11 +14,12 @@ import { InputNumber } from '../../../../components/input/InputNumber'
 import { DateWithController } from '../../../../components/date/DateWithController'
 
 interface CadCorteProps {
+  corte?: Partial<Corte>
   onSuccess?: (value: Corte) => void
   onCancel?: () => void
 }
 
-export function CadCorte({ onSuccess, onCancel }: CadCorteProps) {
+export function CadCorte({ onSuccess, onCancel, corte }: CadCorteProps) {
   const {
     register,
     handleSubmit,
@@ -28,9 +29,9 @@ export function CadCorte({ onSuccess, onCancel }: CadCorteProps) {
     resolver: zodResolver(schemaCadCorte),
     mode: 'onChange',
     defaultValues: {
-      quantity: '1',
-      value: '30',
-      date: new Date(),
+      quantity: corte?.quantity?.toString() ?? '1',
+      value: corte?.price?.toString() ?? '30',
+      date: corte?.date ?? new Date(),
     },
   })
 
@@ -48,6 +49,7 @@ export function CadCorte({ onSuccess, onCancel }: CadCorteProps) {
           onSuccess?.({
             price: Number(data.value),
             quantity: Number(data.quantity),
+            date: data.date,
           })
         })}
       >
