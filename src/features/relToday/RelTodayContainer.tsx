@@ -17,10 +17,17 @@ import { useInvalidateQuery } from '../../hooks/InvalidateQueryHook'
 import { QueryKeyGetByListEntradaCorte } from '../../queryKey/QueryKeyGetEntradaCorte'
 import { auth } from '../../api/FirebaseConnection'
 import toast from 'react-hot-toast'
+import { Loading } from '../../components/loading/loading'
 
 export function RelTodayContainer() {
-  const { date, listCortes, setDate, addEntradaCorte, deleteByIdEntradaCorte } =
-    useRelToday()
+  const {
+    date,
+    listCortes,
+    setDate,
+    addEntradaCorte,
+    deleteByIdEntradaCorte,
+    isLoading,
+  } = useRelToday()
   const modalAddCorte = useRef<ContainerModalElement>(null)
   const { invalidateQuery } = useInvalidateQuery()
 
@@ -28,78 +35,82 @@ export function RelTodayContainer() {
     <div className={style.container}>
       <Header>Relatório diário</Header>
 
-      <div className={style.bodyRel}>
-        <DateToday
-          date={date}
-          onPrevious={(datePrevious: Date) => setDate(datePrevious)}
-          onNext={(dateNext: Date) => setDate(dateNext)}
-        />
-
-        <ListCorteTotalized
-          onDelete={(corte: Corte) => {
-            if (!corte.id) {
-              toast.error('Não é possível deletar um registro que não tem id!')
-              return
-            }
-
-            deleteByIdEntradaCorte(corte.id!).then(() => {
-              invalidateQuery(
-                QueryKeyGetByListEntradaCorte(date, auth.currentUser?.email!),
-              )
-            })
-          }}
-          listCortes={{
-            cortes: listCortes,
-            totalized: listCortes.reduce(
-              (total, corte) => total + corte.price * corte.quantity,
-              0,
-            ),
-          }}
-        />
-      </div>
-
-      <div className={style.footer}>
-        <ButtonCommom
-          onClick={() => modalAddCorte.current?.open()}
-          optionButton="Success"
-          width="TamanhoMinimo"
-          styleFormat="Circle"
-        >
-          <ShowIcon
-            nameIcon="add"
-            onClick={() => {
-              modalAddCorte.current?.open()
-            }}
+      <Loading isLoading={isLoading}>
+        <div className={style.bodyRel}>
+          <DateToday
+            date={date}
+            onPrevious={(datePrevious: Date) => setDate(datePrevious)}
+            onNext={(dateNext: Date) => setDate(dateNext)}
           />
-        </ButtonCommom>
 
-        <ContainerModalFullScreen ref={modalAddCorte}>
-          <CadCorte
-            corte={{ date: date }}
-            onCancel={() => {
-              modalAddCorte.current?.close()
-            }}
-            onSuccess={(value: Corte) => {
-              if (!auth.currentUser?.email) {
+          <ListCorteTotalized
+            onDelete={(corte: Corte) => {
+              if (!corte.id) {
                 toast.error(
-                  'Usuário não autenticado. Por favor, faça login novamente.',
+                  'Não é possível deletar um registro que não tem id!',
                 )
                 return
               }
 
-              addEntradaCorte(value, auth.currentUser?.email!).then(() => {
+              deleteByIdEntradaCorte(corte.id!).then(() => {
                 invalidateQuery(
-                  QueryKeyGetByListEntradaCorte(
-                    value.date,
-                    auth.currentUser?.email!,
-                  ),
+                  QueryKeyGetByListEntradaCorte(date, auth.currentUser?.email!),
                 )
-                modalAddCorte.current?.close()
               })
             }}
+            listCortes={{
+              cortes: listCortes,
+              totalized: listCortes.reduce(
+                (total, corte) => total + corte.price * corte.quantity,
+                0,
+              ),
+            }}
           />
-        </ContainerModalFullScreen>
-      </div>
+        </div>
+
+        <div className={style.footer}>
+          <ButtonCommom
+            onClick={() => modalAddCorte.current?.open()}
+            optionButton="Success"
+            width="TamanhoMinimo"
+            styleFormat="Circle"
+          >
+            <ShowIcon
+              nameIcon="add"
+              onClick={() => {
+                modalAddCorte.current?.open()
+              }}
+            />
+          </ButtonCommom>
+
+          <ContainerModalFullScreen ref={modalAddCorte}>
+            <CadCorte
+              corte={{ date: date }}
+              onCancel={() => {
+                modalAddCorte.current?.close()
+              }}
+              onSuccess={(value: Corte) => {
+                if (!auth.currentUser?.email) {
+                  toast.error(
+                    'Usuário não autenticado. Por favor, faça login novamente.',
+                  )
+                  return
+                }
+
+                addEntradaCorte(value, auth.currentUser?.email!).then(() => {
+                  invalidateQuery(
+                    QueryKeyGetByListEntradaCorte(
+                      value.date,
+                      auth.currentUser?.email!,
+                    ),
+                  )
+                  modalAddCorte.current?.close()
+                })
+              }}
+            />
+          </ContainerModalFullScreen>
+        </div>
+      </Loading>
     </div>
   )
 }

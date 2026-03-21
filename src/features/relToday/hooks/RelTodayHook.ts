@@ -8,18 +8,21 @@ import { useDeleteByIdEntradaCorte } from './entradaCorte/DeleteByIdEntradaCorte
 export function useRelToday() {
   const [date, setDate] = useState<Date>(new Date())
 
-  const { addEntradaCorte } = useAddEntradaCorte()
-  const { deleteByIdEntradaCorte } = useDeleteByIdEntradaCorte()
-  const { listEntradaCorte } = useGetByListEntradaCorte(
-    date,
-    auth.currentUser?.email || '',
-  )
+  const { addEntradaCorte, returnExecution: returnAdd } = useAddEntradaCorte()
+  const { deleteByIdEntradaCorte, returnExecution: returnDelete } =
+    useDeleteByIdEntradaCorte()
+  const { listEntradaCorte, returnGetByListEntradaCorte } =
+    useGetByListEntradaCorte(date, auth.currentUser?.email || '')
 
   return {
     date,
     setDate,
     addEntradaCorte,
     deleteByIdEntradaCorte,
+    isLoading:
+      returnAdd.isPending ||
+      returnDelete.isPending ||
+      returnGetByListEntradaCorte.isLoading,
     listCortes: listEntradaCorte.map((item) => {
       return {
         price: item.price,
