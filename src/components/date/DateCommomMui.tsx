@@ -11,6 +11,17 @@ export function DateCommomMui({
       sx={sx}
       slotProps={{
         ...slotProps,
+        day: {
+          sx: {
+            '&.Mui-selected': {
+              backgroundColor: '#28a745 !important',
+              color: '#fff',
+            },
+            '&.Mui-selected:hover': {
+              backgroundColor: '#218838 !important',
+            },
+          },
+        },
 
         textField: {
           InputLabelProps: {
@@ -35,6 +46,18 @@ export function DateCommomMui({
 
             '&:hover .MuiPickersOutlinedInput-notchedOutline': {
               borderColor: '#bfbfbf',
+            },
+
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#28a745',
+              },
+              '&:hover fieldset': {
+                borderColor: '#28a745',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#28a745',
+              },
             },
 
             '& .MuiPickersOutlinedInput-root.Mui-focused .MuiPickersOutlinedInput-notchedOutline':
