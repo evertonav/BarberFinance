@@ -50,13 +50,13 @@ export function DateCommomMui({
 
             '& .MuiOutlinedInput-root': {
               '& fieldset': {
-                borderColor: '#28a745',
+                borderColor: '#28a745 !important',
               },
               '&:hover fieldset': {
-                borderColor: '#28a745',
+                borderColor: '#28a745 !important',
               },
               '&.Mui-focused fieldset': {
-                borderColor: '#28a745',
+                borderColor: '#28a745 !important',
               },
             },
 
