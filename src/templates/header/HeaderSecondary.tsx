@@ -1,7 +1,7 @@
-import style from './Header.module.css'
+import style from './HeaderSecondary.module.css'
 import type { ContainerTemplateProps } from '../types'
 
-export function Header({
+export function HeaderSecondary({
   children,
   className,
   ...rest

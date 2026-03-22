@@ -1,7 +1,6 @@
 import ShowIcon from '../../components/showIcon/ShowIcon'
-
 import { DateToday } from './components/dateToday/DateToday'
-import { Header } from '../../templates/header/Header'
+import { HeaderSecondary } from '../../templates/header/HeaderSecondary'
 import style from './RelTodayContainer.module.css'
 import { ListCorteTotalized } from './components/listCorteTotalized/ListCorteTotalized'
 import { useRef } from 'react'
@@ -33,9 +32,9 @@ export function RelTodayContainer() {
 
   return (
     <div className={style.container}>
-      <Header>Relatório diário</Header>
-
       <Loading isLoading={isLoading}>
+        <HeaderSecondary>Relatório diário</HeaderSecondary>
+
         <div className={style.bodyRel}>
           <DateToday
             date={date}

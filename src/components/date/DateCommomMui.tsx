@@ -62,7 +62,7 @@ export function DateCommomMui({
 
             '& .MuiPickersOutlinedInput-root.Mui-focused .MuiPickersOutlinedInput-notchedOutline':
               {
-                borderColor: '#28a745',
+                borderColor: '#28a745 !important',
               },
           },
 

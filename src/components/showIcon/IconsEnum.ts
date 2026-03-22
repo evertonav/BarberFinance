@@ -8,6 +8,8 @@ export enum IconsEnum {
   ARROW_BACK = 'arrow_back_ios',
   ARROW_FORWARD = 'arrow_forward_ios',
   ADD = 'add',
+  SCISSOR = 'content_cut',
+  LOGOUT = 'logout',
 }
 
 export type IconsType = `${(typeof IconsEnum)[keyof typeof IconsEnum]}`

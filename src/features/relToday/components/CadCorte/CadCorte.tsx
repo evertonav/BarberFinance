@@ -1,7 +1,7 @@
 import { ButtonCommom } from '../../../../components/button/ButtonCommom'
 import { LabelTitle } from '../../../../components/labels/labelTitle/LabelTitle'
 import { ContainerRounded } from '../../../../templates/containerRounded/ContainerRounded'
-import { Header } from '../../../../templates/header/Header'
+
 import style from './CadCorte.module.css'
 import type { Corte } from '../../types'
 import { useForm } from 'react-hook-form'
@@ -12,6 +12,7 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod'
 import { InputNumber } from '../../../../components/input/InputNumber'
 import { DateWithController } from '../../../../components/date/DateWithController'
+import { HeaderSecondary } from '../../../../templates/header/HeaderSecondary'
 
 interface CadCorteProps {
   corte?: Partial<Corte>
@@ -37,11 +38,11 @@ export function CadCorte({ onSuccess, onCancel, corte }: CadCorteProps) {
 
   return (
     <ContainerRounded className={style.container}>
-      <Header className={style.headerColor}>
+      <HeaderSecondary className={style.headerColor}>
         <LabelTitle fontSize="20" color="Commom">
           Adicionar corte
         </LabelTitle>
-      </Header>
+      </HeaderSecondary>
 
       <form
         className={style.body}
