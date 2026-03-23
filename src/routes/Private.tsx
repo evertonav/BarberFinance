@@ -12,6 +12,15 @@ export function Private({ children }: PrivateProps) {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const userData = {
+          email: user?.email,
+        }
+
+        localStorage.removeItem('@reactBarberFinance')
+        localStorage.setItem('@reactBarberFinance', JSON.stringify(userData))
+      }
+
       setSigned(!!user)
     })
 

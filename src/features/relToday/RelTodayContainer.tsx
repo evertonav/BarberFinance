@@ -14,9 +14,9 @@ import type { Corte } from './types'
 import { useRelToday } from './hooks/RelTodayHook'
 import { useInvalidateQuery } from '../../hooks/InvalidateQueryHook'
 import { QueryKeyGetByListEntradaCorte } from '../../queryKey/QueryKeyGetEntradaCorte'
-import { auth } from '../../api/FirebaseConnection'
 import toast from 'react-hot-toast'
 import { Loading } from '../../components/loading/loading'
+import { GetUserLogado } from '../../utils/GetUser'
 
 export function RelTodayContainer() {
   const {
@@ -53,7 +53,7 @@ export function RelTodayContainer() {
 
               deleteByIdEntradaCorte(corte.id!).then(() => {
                 invalidateQuery(
-                  QueryKeyGetByListEntradaCorte(date, auth.currentUser?.email!),
+                  QueryKeyGetByListEntradaCorte(date, GetUserLogado()),
                 )
               })
             }}
@@ -89,19 +89,18 @@ export function RelTodayContainer() {
                 modalAddCorte.current?.close()
               }}
               onSuccess={(value: Corte) => {
-                if (!auth.currentUser?.email) {
+                const user = GetUserLogado()
+
+                if (user === null) {
                   toast.error(
                     'Usuário não autenticado. Por favor, faça login novamente.',
                   )
                   return
                 }
 
-                addEntradaCorte(value, auth.currentUser?.email!).then(() => {
+                addEntradaCorte(value, user).then(() => {
                   invalidateQuery(
-                    QueryKeyGetByListEntradaCorte(
-                      value.date,
-                      auth.currentUser?.email!,
-                    ),
+                    QueryKeyGetByListEntradaCorte(value.date, GetUserLogado()),
                   )
                   modalAddCorte.current?.close()
                 })

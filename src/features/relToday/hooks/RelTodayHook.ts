@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useAddEntradaCorte } from './entradaCorte/AddEntradaCorteHook'
 import { useGetByListEntradaCorte } from './entradaCorte/GetByListEntradaCorteHook'
-import { auth } from '../../../api/FirebaseConnection'
 import type { Corte } from '../types'
 import { useDeleteByIdEntradaCorte } from './entradaCorte/DeleteByIdEntradaCorteHook'
+import { GetUserLogado } from '../../../utils/GetUser'
 
 export function useRelToday() {
   const [date, setDate] = useState<Date>(new Date())
@@ -12,7 +12,7 @@ export function useRelToday() {
   const { deleteByIdEntradaCorte, returnExecution: returnDelete } =
     useDeleteByIdEntradaCorte()
   const { listEntradaCorte, returnGetByListEntradaCorte } =
-    useGetByListEntradaCorte(date, auth.currentUser?.email || '')
+    useGetByListEntradaCorte(date, GetUserLogado())
 
   return {
     date,
