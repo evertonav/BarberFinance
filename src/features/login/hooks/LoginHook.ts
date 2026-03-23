@@ -11,9 +11,15 @@ export function useLogin() {
     onSuccess: () => {
       toast.success('Login efetuado com sucesso!')
     },
-    onError: (error) => {
+    onError: (error: { code: string }) => {
+      if (error.code.includes('auth/invalid-credential')) {
+        toast.error('Credenciais inválidas, verifique seu email e senha.')
+        return error
+      }
+
       toast.error('Não foi possível fazer a authenticação. Detalhe: ' + error)
       console.log('Erro: ', error)
+      return error
     },
   })
 

@@ -3,19 +3,19 @@
 
   height: 60px;
   border: none; /* Remove a borda */
-
-  font-size: 16px; /* Tamanho da fonte */
+  font-weight: 600;
+  font-size: 1rem; /* Tamanho da fonte */
   cursor: pointer; /* Mostra o cursor de ponteiro ao passar o mouse */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra */
-  transition: background-color 0.3s ease; /* Animação ao passar o mouse */
+  transition: opacity 0.2s;
 }
 
 .buttonSuccess {
-  background-color: #28a745; /* Cor de fundo */
+  background-color: #28af60; /* Cor de fundo */
 }
 
 .buttonSuccess:hover {
-  background-color: #218838; /* Cor de fundo ao passar o mouse */
+  opacity: 0.9;
 }
 
 .buttonCancel {
@@ -39,5 +39,5 @@
 }
 
 .formatRounded {
-  border-radius: 10px;
+  border-radius: 0.75rem;
 }

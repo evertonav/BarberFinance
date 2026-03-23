@@ -1,29 +1,29 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './LoginContainer.module.css'
-import ShowIcon from '../../components/showIcon/ShowIcon'
 import InputCommonMUI from '../../components/input/InputCommonMUI'
 import { useLogin } from './hooks/LoginHook'
-import { CircleDesign } from './components/CircleDesign'
+import { CircleDesign } from './components/CircleDesign/CircleDesign'
+import { Logo } from './components/Logo/Logo'
+import { useForm } from 'react-hook-form'
+import {
+  schemaLogin,
+  type FormDataLogin,
+} from './schemas/SchemasValidationLogin'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { ButtonCommom } from '../../components/button/ButtonCommom'
 
-/*
-  Deixei a tela apenas funcional mas tem que organizar o código.
-  Remover css desnecessário.
-*/
-
-const LoginContainer = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+export function LoginContainer() {
   const navigate = useNavigate()
   const { login } = useLogin()
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    login(email, password).then(() => {
-      navigate('/')
-    })
-  }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormDataLogin>({
+    resolver: zodResolver(schemaLogin),
+    mode: 'onChange',
+  })
 
   return (
     <div className={styles.wrapper}>
@@ -32,19 +32,25 @@ const LoginContainer = () => {
       <CircleDesign type="circleBottom" />
 
       <div className={styles.card}>
-        <div className={styles.logoBox}>
-          <ShowIcon nameIcon="content_cut" className={styles.iconScissor} />
-        </div>
+        <Logo />
 
         <span className={styles.brandName}>Barber Finance</span>
 
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit((data: FormDataLogin) => {
+            login(data.user, data.password).then(() => {
+              navigate('/')
+            })
+          })}
+        >
           <InputCommonMUI
             title="E-mail"
             type="text"
             placeholder="nome@exemplo.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            register={register('user')}
+            error={!!errors.user}
+            helperText={errors.user?.message}
             autoComplete="email"
           />
 
@@ -52,18 +58,22 @@ const LoginContainer = () => {
             title="Senha"
             type={'password'}
             placeholder="••••••••"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            register={register('password')}
+            error={!!errors.password}
+            helperText={errors.password?.message}
             autoComplete="current-password"
           />
 
-          <button type="submit" className={styles.submitBtn}>
+          <ButtonCommom
+            width="TamanhoTotal"
+            optionButton="Success"
+            type="submit"
+            styleFormat="Rounded"
+          >
             Entrar
-          </button>
+          </ButtonCommom>
         </form>
       </div>
     </div>
   )
 }
-
-export default LoginContainer

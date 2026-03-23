@@ -1,0 +1,14 @@
+.logoBox {
+  width: 64px;
+  height: 64px;
+  border-radius: 0.75rem;
+  background: #28ae6b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.iconScissor {
+  font-size: 30px;
+}
