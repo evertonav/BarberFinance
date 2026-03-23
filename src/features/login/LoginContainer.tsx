@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import styles from './LoginContainer.module.css'
 import ShowIcon from '../../components/showIcon/ShowIcon'
 import InputCommonMUI from '../../components/input/InputCommonMUI'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../api/FirebaseConnection'
-import toast from 'react-hot-toast'
+import { useLogin } from './hooks/LoginHook'
+import { CircleDesign } from './components/CircleDesign'
 
 /*
   Deixei a tela apenas funcional mas tem que organizar o código.
@@ -16,27 +15,25 @@ const LoginContainer = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
+  const { login } = useLogin()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        navigate('/')
-      })
-      .catch((error) => {
-        toast.error('Erro ao fazer login: ' + error.message)
-      })
+
+    login(email, password).then(() => {
+      navigate('/')
+    })
   }
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.circle1} />
+      <CircleDesign type="circleTop" />
 
-      <div className={styles.circle2} />
+      <CircleDesign type="circleBottom" />
 
       <div className={styles.card}>
         <div className={styles.logoBox}>
-          {<ShowIcon nameIcon="content_cut" className={styles.iconScissor} />}
+          <ShowIcon nameIcon="content_cut" className={styles.iconScissor} />
         </div>
 
         <span className={styles.brandName}>Barber Finance</span>

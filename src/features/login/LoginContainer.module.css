@@ -1,9 +1,9 @@
 .wrapper {
-  height: 92.5%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: hsl(140 20% 95%);
+  background: #f1f5f2;
   position: relative;
   overflow: hidden;
   padding: 1.5rem;
@@ -11,26 +11,6 @@
 
 .iconScissor {
   font-size: 30px;
-}
-
-.circle1 {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: hsl(145 63% 42% / 0.08);
-  bottom: -80px;
-  right: -60px;
-}
-
-.circle2 {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background: hsl(145 63% 42% / 0.06);
-  top: -40px;
-  left: -60px;
 }
 
 .card {
