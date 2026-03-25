@@ -1,8 +1,9 @@
 import { Outlet } from 'react-router-dom'
 import { HeaderPrimary } from '../../templates/header/HeaderPrimary'
 import { auth } from '../../api/FirebaseConnection'
+import BottomNav from '../../components/BottomNav'
 
-export default function PageOwnerWithHeader() {
+export default function PageOwnerWithHeaderAndBottomNavigate() {
   return (
     <>
       <HeaderPrimary
@@ -12,6 +13,8 @@ export default function PageOwnerWithHeader() {
       />
 
       <Outlet />
+
+      <BottomNav active="report" onNavigate={() => {}} />
     </>
   )
 }

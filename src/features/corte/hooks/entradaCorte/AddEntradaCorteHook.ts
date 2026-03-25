@@ -3,7 +3,7 @@ import type { EntradaCorte } from '../../../../api/repositories/entradaCorte/typ
 import { AddEntradaCorte } from '../../../../api/repositories/entradaCorte/AddEntradaCorte'
 import toast from 'react-hot-toast'
 import type { DocumentData, DocumentReference } from 'firebase/firestore'
-import type { Corte } from '../../types'
+import type { Corte } from '../../../relToday/types'
 
 export function useAddEntradaCorte() {
   const entradaCorteAdd = useMutation({

@@ -8,7 +8,7 @@ import {
   ContainerModalFullScreen,
   type ContainerModalElement,
 } from '../../templates/ContainerModal/ContainerModalFullScreen'
-import { CadCorte } from './components/CadCorte/CadCorte'
+import { CadCorte } from '../corte/cadCorte/CadCorte'
 import { ButtonCommom } from '../../components/button/ButtonCommom'
 import type { Corte } from './types'
 import { useRelToday } from './hooks/RelTodayHook'

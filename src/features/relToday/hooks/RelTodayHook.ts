@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { useAddEntradaCorte } from './entradaCorte/AddEntradaCorteHook'
-import { useGetByListEntradaCorte } from './entradaCorte/GetByListEntradaCorteHook'
+import { useAddEntradaCorte } from '../../corte/hooks/entradaCorte/AddEntradaCorteHook'
+import { useGetByListEntradaCorte } from '../../corte/hooks/entradaCorte/GetByListEntradaCorteHook'
 import type { Corte } from '../types'
-import { useDeleteByIdEntradaCorte } from './entradaCorte/DeleteByIdEntradaCorteHook'
+import { useDeleteByIdEntradaCorte } from '../../corte/hooks/entradaCorte/DeleteByIdEntradaCorteHook'
 import { GetUserLogado } from '../../../utils/GetUser'
 
 export function useRelToday() {

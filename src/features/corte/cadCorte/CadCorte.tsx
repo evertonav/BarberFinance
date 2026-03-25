@@ -1,18 +1,19 @@
-import { ButtonCommom } from '../../../../components/button/ButtonCommom'
-import { LabelTitle } from '../../../../components/labels/labelTitle/LabelTitle'
-import { ContainerRounded } from '../../../../templates/containerRounded/ContainerRounded'
+import { ButtonCommom } from '../../../components/button/ButtonCommom'
+import { LabelTitle } from '../../../components/labels/labelTitle/LabelTitle'
+import { ContainerRounded } from '../../../templates/containerRounded/ContainerRounded'
 
 import style from './CadCorte.module.css'
-import type { Corte } from '../../types'
+import type { Corte } from '../../relToday/types'
 import { useForm } from 'react-hook-form'
+
+import { zodResolver } from '@hookform/resolvers/zod'
+import { InputNumber } from '../../../components/input/InputNumber'
+import { DateWithController } from '../../../components/date/DateWithController'
+import { HeaderSecondary } from '../../../templates/header/HeaderSecondary'
 import {
   schemaCadCorte,
   type FormDataCadCorte,
 } from './schemas/SchemasValidationCadCorte'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { InputNumber } from '../../../../components/input/InputNumber'
-import { DateWithController } from '../../../../components/date/DateWithController'
-import { HeaderSecondary } from '../../../../templates/header/HeaderSecondary'
 
 interface CadCorteProps {
   corte?: Partial<Corte>
