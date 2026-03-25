@@ -1,0 +1,13 @@
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 64px;
+  background-color: #ffffff;
+  border-top: 1px solid #dde8e1;
+  z-index: 50;
+}

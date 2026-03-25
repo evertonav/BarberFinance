@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { RelTodayPage } from '../pages/RelTodayPage'
 import { Private } from './Private'
 import { LoginContainer } from '../features/login/LoginContainer'
@@ -9,14 +9,18 @@ export function AppRouter() {
     <BrowserRouter>
       <Routes>
         <Route element={<PageOwnerWithHeaderAndBottomNavigate />}>
+          <Route index element={<Navigate to="/report" replace />} />
+
           <Route
-            index
+            path="/report"
             element={
               <Private>
                 <RelTodayPage />
               </Private>
             }
           />
+
+          <Route path="/dashboard" element={<div>DashBoard</div>} />
         </Route>
       </Routes>
 
