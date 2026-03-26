@@ -3,7 +3,7 @@ import style from './LabelTitle.module.css'
 
 interface LabelTitleProps extends Omit<LabelProps, 'color' | 'fontWeight'> {
   color?: 'Commom' | 'Success'
-  fontSize?: '17' | '20'
+  fontSize?: '17' | '19' | '20'
 }
 
 export function LabelTitle({

@@ -4,15 +4,26 @@ import { auth } from '../../api/FirebaseConnection'
 import { ContainerNavBottom } from '../../templates/containerNavBottom/ContainerNavBottom'
 import ShowIcon from '../../components/showIcon/ShowIcon'
 import { NavLinkCommom } from '../../components/navLink/NavLinkCommom'
+import { ContainerLeft } from '../../templates/ContainerLeft/ContainerLeft'
+import { LabelTitle } from '../../components/labels/labelTitle/LabelTitle'
+import { ButtonIcone } from '../../components/button/ButtonIcone'
 
 export default function PageOwnerWithHeaderAndBottomNavigate() {
   return (
     <>
-      <HeaderPrimary
-        onLogout={() => {
-          auth.signOut()
-        }}
-      />
+      <HeaderPrimary>
+        <ContainerLeft>
+          <ShowIcon nameIcon="content_cut" size="22px" color="Success" />
+
+          <LabelTitle fontSize="19" color="Success">
+            Barber Finance
+          </LabelTitle>
+        </ContainerLeft>
+
+        <ButtonIcone onClick={() => auth.signOut()} title="Sair">
+          <ShowIcon nameIcon="logout" />
+        </ButtonIcone>
+      </HeaderPrimary>
 
       <Outlet />
 
@@ -22,10 +33,10 @@ export default function PageOwnerWithHeaderAndBottomNavigate() {
           <span>Relatório</span>
         </NavLinkCommom>
 
-        <NavLinkCommom to="/dashboard">
+        {/*<NavLinkCommom to="/dashboard">
           <ShowIcon nameIcon="analytics" />
           <span>Dashboard</span>
-        </NavLinkCommom>
+        </NavLinkCommom>*/}
       </ContainerNavBottom>
     </>
   )

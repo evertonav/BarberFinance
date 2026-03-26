@@ -10,10 +10,14 @@
   font-size: 20px;
 }
 
+.fontSize19 {
+  font-size: 19px;
+}
+
 .colorCommom {
   color: #000000;
 }
 
 .colorSuccess {
-  color: #28a745;
+  color: #28ae65;
 }
