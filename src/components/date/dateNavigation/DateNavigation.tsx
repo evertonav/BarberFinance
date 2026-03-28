@@ -1,16 +1,25 @@
-import ShowIcon from '../../../../components/showIcon/ShowIcon'
-import { ContainerRounded } from '../../../../templates/containerRounded/ContainerRounded'
-import { formatDate } from '../../../../utils/Format/FormatDate'
+import { ContainerRounded } from '../../../templates/containerRounded/ContainerRounded'
+import {
+  formatDate,
+  formatExtractYearDate,
+} from '../../../utils/Format/FormatDate'
+import { ButtonIcone } from '../../button/ButtonIcone'
+import ShowIcon from '../../showIcon/ShowIcon'
 import style from './DateNavigation.module.css'
-import { ButtonIcone } from '../../../../components/button/ButtonIcone'
 
-interface DateTodayProps {
+interface DateNavigationProps {
   onNext?: (dateNext: Date) => void
   onPrevious?: (datePrevious: Date) => void
   date: Date
+  format?: 'Year' | 'DayMonthYear'
 }
 
-export function DateToday({ onNext, onPrevious, date }: DateTodayProps) {
+export function DateNavigation({
+  onNext,
+  onPrevious,
+  date,
+  format = 'DayMonthYear',
+}: DateNavigationProps) {
   return (
     <ContainerRounded className={style.container}>
       <ButtonIcone
@@ -21,7 +30,9 @@ export function DateToday({ onNext, onPrevious, date }: DateTodayProps) {
         <ShowIcon nameIcon="arrow_back_ios" size="22px" />
       </ButtonIcone>
 
-      {formatDate(date)}
+      {format === 'DayMonthYear'
+        ? formatDate(date)
+        : formatExtractYearDate(date)}
 
       <ButtonIcone
         onClick={() =>

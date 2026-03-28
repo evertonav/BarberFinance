@@ -7,6 +7,7 @@ import { NavLinkCommom } from '../../components/navLink/NavLinkCommom'
 import { ContainerLeft } from '../../templates/ContainerLeft/ContainerLeft'
 import { LabelTitle } from '../../components/labels/labelTitle/LabelTitle'
 import { ButtonIcone } from '../../components/button/ButtonIcone'
+import style from './PageOwnerWithHeaderAndBottomNavigate.module.css'
 
 export default function PageOwnerWithHeaderAndBottomNavigate() {
   return (
@@ -25,7 +26,9 @@ export default function PageOwnerWithHeaderAndBottomNavigate() {
         </ButtonIcone>
       </HeaderPrimary>
 
-      <Outlet />
+      <div className={style.container}>
+        <Outlet />
+      </div>
 
       <ContainerNavBottom>
         <NavLinkCommom to="/report">
@@ -33,10 +36,10 @@ export default function PageOwnerWithHeaderAndBottomNavigate() {
           <span>Relatório</span>
         </NavLinkCommom>
 
-        {/*<NavLinkCommom to="/dashboard">
+        <NavLinkCommom to="/dashboard">
           <ShowIcon nameIcon="analytics" />
           <span>Dashboard</span>
-        </NavLinkCommom>*/}
+        </NavLinkCommom>
       </ContainerNavBottom>
     </>
   )

@@ -1,13 +1,21 @@
 import style from './HeaderSecondary.module.css'
 import type { ContainerTemplateProps } from '../types'
 
+interface HeaderSecondaryProps extends ContainerTemplateProps {
+  fontSize?: '18' | '16'
+}
+
 export function HeaderSecondary({
   children,
   className,
+  fontSize = '18',
   ...rest
-}: ContainerTemplateProps) {
+}: HeaderSecondaryProps) {
   return (
-    <div className={`${style.container} ${className}`} {...rest}>
+    <div
+      className={`${style.container} ${style['fontSize' + fontSize]} ${className}`}
+      {...rest}
+    >
       {children}
     </div>
   )

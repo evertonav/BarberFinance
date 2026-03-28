@@ -5,3 +5,7 @@ export function formatDate(date: Date): string {
 
   return `${day}/${month}/${year}`
 }
+
+export function formatExtractYearDate(date: Date): string {
+  return `${date.getFullYear()}`
+}

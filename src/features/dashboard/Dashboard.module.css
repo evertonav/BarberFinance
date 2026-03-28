@@ -1,0 +1,134 @@
+.container {
+  padding: 16px;
+  padding-bottom: 80px;
+}
+
+.header {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: hsl(140 10% 90%);
+  padding: 16px 0;
+}
+
+.dateNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: hsl(220 15% 14%);
+  border-radius: 0.75rem;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px hsl(220 15% 20% / 0.05);
+}
+
+.dateText {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: hsl(220 15% 20%);
+}
+
+.dateBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: hsl(220 10% 50%);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.chartCard {
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.chartTitle {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: hsl(220 15% 20%);
+  margin-bottom: 12px;
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.categoryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.categoryLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.categoryDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.categoryName {
+  font-size: 0.9rem;
+  color: hsl(220 15% 20%);
+}
+
+.categoryValue {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: hsl(220 15% 20%);
+}
+
+.barContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.barRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.barLabel {
+  width: 60px;
+  font-size: 0.8rem;
+  color: hsl(220 10% 50%);
+  text-align: right;
+}
+
+.barTrack {
+  flex: 1;
+  height: 24px;
+  background: hsl(140 15% 92%);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  background: hsl(145 63% 42%);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.barValue {
+  width: 80px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: hsl(220 15% 20%);
+}
+
+.emptyState {
+  text-align: center;
+  color: hsl(220 10% 50%);
+  padding: 24px 0;
+  font-size: 0.9rem;
+}

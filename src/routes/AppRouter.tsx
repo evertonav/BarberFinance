@@ -3,6 +3,7 @@ import { RelTodayPage } from '../pages/RelTodayPage'
 import { Private } from './Private'
 import { LoginContainer } from '../features/login/LoginContainer'
 import PageOwnerWithHeaderAndBottomNavigate from '../pages/pageOwner/PageOwnerWithHeaderAndBottomNavigate'
+import { DashboardPage } from '../pages/DashboardPage'
 
 export function AppRouter() {
   return (
@@ -20,7 +21,7 @@ export function AppRouter() {
             }
           />
 
-          <Route path="/dashboard" element={<div>DashBoard</div>} />
+          <Route path="/dashboard" element={<DashboardPage />} />
         </Route>
       </Routes>
 
