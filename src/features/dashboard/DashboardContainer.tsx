@@ -1,4 +1,5 @@
 import { DateNavigation } from '../../components/date/dateNavigation/DateNavigation'
+import { Label } from '../../components/labels/Label'
 import { Loading } from '../../components/loading/loading'
 import { ContainerBody } from '../../templates/ContainerBody/ContainerBody'
 import { ContainerRounded } from '../../templates/containerRounded/ContainerRounded'
@@ -15,10 +16,15 @@ export function DashboardContainer() {
         <DateNavigation date={new Date()} format="Year" />
 
         <ContainerRounded className={styles.chartCard}>
-          <div className={styles.chartTitle}>Recebimentos por mês</div>
-          <div className={styles.barContainer}>
+          <HeaderSecondary fontSize="14" className={styles.chartTitle}>
+            Recebimentos por mês
+          </HeaderSecondary>
+
+          <div
+            className={`${styles.barContainer} ${false && styles.alignCenter}`}
+          >
             {false ? (
-              <p className={styles.emptyState}>Nenhum dado para este ano</p>
+              <Label color="Secondary">Nenhum dado para este ano.</Label>
             ) : (
               <div key={'Jan'} className={styles.barRow}>
                 <span className={styles.barLabel}>{'Jan'}</span>

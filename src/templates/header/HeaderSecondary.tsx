@@ -2,7 +2,7 @@ import style from './HeaderSecondary.module.css'
 import type { ContainerTemplateProps } from '../types'
 
 interface HeaderSecondaryProps extends ContainerTemplateProps {
-  fontSize?: '18' | '16'
+  fontSize?: '18' | '16' | '14'
 }
 
 export function HeaderSecondary({

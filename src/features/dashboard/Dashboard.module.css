@@ -44,10 +44,9 @@
 }
 
 .chartTitle {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: hsl(220 15% 20%);
-  margin-bottom: 12px;
+  justify-content: initial !important;
+  align-items: flex-start;
+  height: 30px;
 }
 
 .categoryList {
@@ -88,7 +87,12 @@
 .barContainer {
   display: flex;
   flex-direction: column;
+
   gap: 12px;
+}
+
+.alignCenter {
+  align-items: center;
 }
 
 .barRow {
@@ -128,7 +132,6 @@
 
 .emptyState {
   text-align: center;
-  color: hsl(220 10% 50%);
-  padding: 24px 0;
+  color: #737b8c;
   font-size: 0.9rem;
 }
