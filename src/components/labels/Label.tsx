@@ -4,7 +4,7 @@ import style from './Label.module.css'
 export interface LabelProps {
   children: ReactNode
   className?: string
-  fontWeight?: '500' | '700'
+  fontWeight?: '500' | '600' | '700'
   color?: 'Primary' | 'Secondary'
 }
 
@@ -17,7 +17,7 @@ export function Label({
   return (
     <div
       className={`${style[`fontWeight${fontWeight}`]} 
-      ${style[`color${color}`]}
+      ${style[`color${color}`]}  
       ${className}`}
     >
       {children}

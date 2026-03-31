@@ -18,7 +18,8 @@ import toast from 'react-hot-toast'
 import { Loading } from '../../components/loading/loading'
 import { GetUserLogado } from '../../utils/GetUser'
 import { ContainerBody } from '../../templates/ContainerBody/ContainerBody'
-import { DateNavigation } from '../../components/date/dateNavigation/DateNavigation'
+import { formatDate } from '../../utils/Format/FormatDate'
+import { Navigation } from '../../components/navigation/Navigation'
 
 export function RelTodayContainer() {
   const {
@@ -37,11 +38,12 @@ export function RelTodayContainer() {
       <HeaderSecondary>Relatório diário</HeaderSecondary>
 
       <ContainerBody>
-        <DateNavigation
-          date={date}
-          onPrevious={(datePrevious: Date) => setDate(datePrevious)}
-          onNext={(dateNext: Date) => setDate(dateNext)}
-        />
+        <Navigation
+          onPrevious={() => setDate(new Date(date.setDate(date.getDate() - 1)))}
+          onNext={() => setDate(new Date(date.setDate(date.getDate() + 1)))}
+        >
+          {formatDate(date)}
+        </Navigation>
 
         <ListCorteTotalized
           onDelete={(corte: Corte) => {

@@ -1,44 +1,25 @@
-import { DateNavigation } from '../../components/date/dateNavigation/DateNavigation'
-import { Label } from '../../components/labels/Label'
+import { DashFull } from '../../components/dash/DashFull'
 import { Loading } from '../../components/loading/loading'
+import { useNavigationYear } from '../../components/navigation/hooks/NavigationYearHook'
+import { Navigation } from '../../components/navigation/Navigation'
 import { ContainerBody } from '../../templates/ContainerBody/ContainerBody'
-import { ContainerRounded } from '../../templates/containerRounded/ContainerRounded'
 import { HeaderSecondary } from '../../templates/header/HeaderSecondary'
-import { formatCurrency } from '../../utils/Format/FormatNumeric'
-import styles from './Dashboard.module.css'
 
 export function DashboardContainer() {
+  const { yearState, nextYear, previousYear } = useNavigationYear(
+    new Date().getFullYear(),
+  )
+
   return (
     <Loading isLoading={false}>
       <HeaderSecondary>DashBoard</HeaderSecondary>
 
       <ContainerBody>
-        <DateNavigation date={new Date()} format="Year" />
+        <Navigation onNext={nextYear} onPrevious={previousYear}>
+          {yearState}
+        </Navigation>
 
-        <ContainerRounded className={styles.chartCard}>
-          <HeaderSecondary fontSize="14" className={styles.chartTitle}>
-            Recebimentos por mês
-          </HeaderSecondary>
-
-          <div
-            className={`${styles.barContainer} ${false && styles.alignCenter}`}
-          >
-            {false ? (
-              <Label color="Secondary">Nenhum dado para este ano.</Label>
-            ) : (
-              <div key={'Jan'} className={styles.barRow}>
-                <span className={styles.barLabel}>{'Jan'}</span>
-                <div className={styles.barTrack}>
-                  <div
-                    className={styles.barFill}
-                    style={{ width: `${10 * 100}%` }}
-                  />
-                </div>
-                <span className={styles.barValue}>{formatCurrency(1000)}</span>
-              </div>
-            )}
-          </div>
-        </ContainerRounded>
+        <DashFull></DashFull>
       </ContainerBody>
     </Loading>
   )
