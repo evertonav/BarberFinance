@@ -1,0 +1,31 @@
+.barRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.barLabel {
+  width: 60px;
+  font-size: 0.8rem;
+  text-align: right;
+}
+
+.barTrack {
+  flex: 1;
+  height: 24px;
+  background: hsl(140 15% 92%);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  background: #28ae65;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.barValue {
+  width: 80px;
+  font-size: 0.8rem;
+}

@@ -1,6 +1,6 @@
 import { formatCurrency } from '../../utils/Format/FormatNumeric'
 import { Label } from '../labels/Label'
-import style from './DashFull.module.css'
+import style from './DashRow.module.css'
 
 interface DashRowProps {
   item: { month: string; value: number }
@@ -9,7 +9,7 @@ interface DashRowProps {
 export function DashRow({ item }: DashRowProps) {
   return (
     <div key={item.month} className={style.barRow}>
-      <Label color="Secondary" fontSize="0_8Rem" className={style.barLabel}>
+      <Label color="Secondary" className={style.barLabel}>
         {item.month}
       </Label>
 

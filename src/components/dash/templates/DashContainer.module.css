@@ -1,0 +1,10 @@
+.container {
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.containerTitle {
+  justify-content: initial !important;
+  align-items: flex-start;
+  height: 30px;
+}
