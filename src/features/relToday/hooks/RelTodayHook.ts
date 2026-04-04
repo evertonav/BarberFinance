@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useAddEntradaCorte } from '../../corte/hooks/entradaCorte/AddEntradaCorteHook'
-import { useGetByListEntradaCorte } from '../../corte/hooks/entradaCorte/GetByListEntradaCorteHook'
+import { useGetByListEntradaCorte } from '../../corte/hooks/entradaCorte/get/GetByListEntradaCorteHook'
 import type { Corte } from '../types'
 import { useDeleteByIdEntradaCorte } from '../../corte/hooks/entradaCorte/DeleteByIdEntradaCorteHook'
 import { GetUserLogado } from '../../../utils/GetUser'
@@ -28,6 +28,7 @@ export function useRelToday() {
         price: item.price,
         quantity: item.quantity,
         date: item.date,
+        total: item.total,
         id: item.id,
       }
     }) as Corte[],

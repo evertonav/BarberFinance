@@ -3,25 +3,26 @@ import { DashContainerRow } from '../../components/dash/templates/DashContainerR
 import { DashRow } from '../../components/dash/DashRow'
 import { Label } from '../../components/labels/Label'
 import { Loading } from '../../components/loading/loading'
-import { useNavigationYear } from '../../components/navigation/hooks/NavigationYearHook'
 import { Navigation } from '../../components/navigation/Navigation'
 import { ContainerBody } from '../../templates/ContainerBody/ContainerBody'
 import { HeaderSecondary } from '../../templates/header/HeaderSecondary'
 import style from './DashboardContainer.module.css'
+import { MonthsDescription, MonthsEnum } from '../../enums/MonthsEnum'
+import { formatCurrency } from '../../utils/Format/FormatNumeric'
+import { useDashBoardContainer } from './DashBoardContainerHook'
 
 export function DashboardContainer() {
-  const { yearState, nextYear, previousYear } = useNavigationYear(
-    new Date().getFullYear(),
-  )
-
-  const teste = [
-    { month: 'Jan', value: 1000 },
-    { month: 'Fev', value: 1500 },
-    { month: 'Mar', value: 1200 },
-  ]
+  const {
+    listMonthTotalEntradaCorte,
+    maxValorTotalEntradaCorte,
+    nextYear,
+    previousYear,
+    isLoading,
+    yearState,
+  } = useDashBoardContainer()
 
   return (
-    <Loading isLoading={false}>
+    <Loading isLoading={isLoading}>
       <HeaderSecondary>DashBoard</HeaderSecondary>
 
       <ContainerBody>
@@ -31,12 +32,27 @@ export function DashboardContainer() {
 
         <DashContainer header={{ children: 'Recebimentos por mês' }}>
           <DashContainerRow
-            className={teste.length === 0 ? style.alignCenter : ''}
+            className={
+              listMonthTotalEntradaCorte.length === 0 ? style.alignCenter : ''
+            }
           >
-            {teste.length === 0 ? (
+            {listMonthTotalEntradaCorte.length === 0 ? (
               <Label color="Secondary">Nenhum dado para este ano.</Label>
             ) : (
-              teste.map((item) => <DashRow item={item} />)
+              listMonthTotalEntradaCorte.map((item, index) => {
+                return (
+                  <DashRow
+                    tamanhoBarra={Math.round(
+                      (item.total / maxValorTotalEntradaCorte) * 100,
+                    )}
+                    key={index}
+                    labelTitle={{
+                      children: MonthsDescription[item.month as MonthsEnum],
+                    }}
+                    labelValue={{ children: formatCurrency(item.total) }}
+                  />
+                )
+              })
             )}
           </DashContainerRow>
         </DashContainer>

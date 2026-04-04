@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
-import { GetListEntradaCorte } from '../../../../api/repositories/entradaCorte/GetEntradaCorte'
+import { GetListEntradaCorte } from '../../../../../api/repositories/entradaCorte/get/GetEntradaCorte'
 import toast from 'react-hot-toast'
+import { QueryKeyGetByListEntradaCorte } from '../../../../../queryKey/QueryKeyGetEntradaCorte'
 
 export function useGetByListEntradaCorte(date: Date, user: string) {
   const { data, ...rest } = useQuery({
-    queryKey: ['GetByListEntradaCorte', date, user],
+    queryKey: QueryKeyGetByListEntradaCorte(date, user),
     queryFn: async () => {
       const start = new Date(date)
       start.setHours(0, 0, 0, 0)

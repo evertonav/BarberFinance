@@ -1,6 +1,6 @@
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import { db } from '../../FirebaseConnection'
-import { nameTableEntradaCorte, type EntradaCorte } from './types'
+import { db } from '../../../FirebaseConnection'
+import { nameTableEntradaCorte, type EntradaCorte } from '../types'
 
 export async function GetListEntradaCorte(
   dateInitial: Date,
@@ -26,6 +26,7 @@ export async function GetListEntradaCorte(
       price: doc.data().price,
       quantity: doc.data().quantity,
       user: doc.data().user,
+      total: doc.data().total,
     })
   })
 

@@ -28,6 +28,7 @@ export function useAddEntradaCorte() {
       price: value.price,
       quantity: value.quantity,
       user: user,
+      total: value.total,
     })
   }
 

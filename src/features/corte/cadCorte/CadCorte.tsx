@@ -52,6 +52,7 @@ export function CadCorte({ onSuccess, onCancel, corte }: CadCorteProps) {
             price: Number(data.value),
             quantity: Number(data.quantity),
             date: data.date,
+            total: Number(data.value) * Number(data.quantity),
           })
         })}
       >

@@ -61,7 +61,7 @@ export function RelTodayContainer() {
           listCortes={{
             cortes: listCortes,
             totalized: listCortes.reduce(
-              (total, corte) => total + corte.price * corte.quantity,
+              (total, corte) => total + corte.total,
               0,
             ),
           }}

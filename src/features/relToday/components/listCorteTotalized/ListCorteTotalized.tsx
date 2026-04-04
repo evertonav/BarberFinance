@@ -30,9 +30,7 @@ export function ListCorteTotalized({
               </Label>
 
               <div className={style.containerValueItemAndDelete}>
-                <Label fontWeight="700">
-                  R$ {(corte.price * corte.quantity).toFixed(2)}
-                </Label>
+                <Label fontWeight="700">R$ {corte.total.toFixed(2)}</Label>
 
                 <ShowIcon
                   onClick={() => {

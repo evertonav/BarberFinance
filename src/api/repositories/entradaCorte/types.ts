@@ -4,6 +4,7 @@ export interface EntradaCorte {
   quantity: number
   price: number
   user: string
+  total: number
 }
 
 export const nameTableEntradaCorte = 'EntradaCorte'

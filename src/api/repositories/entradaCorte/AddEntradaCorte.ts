@@ -15,5 +15,6 @@ export function AddEntradaCorte(
     quantity: entradaCorte.quantity,
     price: entradaCorte.price,
     user: entradaCorte.user,
+    total: entradaCorte.total,
   })
 }
