@@ -18,7 +18,7 @@ export function DashRow({
   labelValue,
   tamanhoBarra,
 }: DashRowProps) {
-  if (tamanhoBarra < 1 || tamanhoBarra > 100) {
+  if (tamanhoBarra < 0 || tamanhoBarra > 100) {
     throw new Error('tamanhoBarra deve estar entre 1 e 100')
   }
 
