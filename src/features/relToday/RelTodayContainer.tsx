@@ -13,7 +13,10 @@ import { ButtonCommom } from '../../components/button/ButtonCommom'
 import type { Corte } from './types'
 import { useRelToday } from './hooks/RelTodayHook'
 import { useInvalidateQuery } from '../../hooks/InvalidateQueryHook'
-import { QueryKeyGetByListEntradaCorte } from '../../queryKey/QueryKeyGetEntradaCorte'
+import {
+  QueryKeyGetByListEntradaCorte,
+  QueryKeyGetTotalEntradaCorte,
+} from '../../queryKey/QueryKeyGetEntradaCorte'
 import toast from 'react-hot-toast'
 import { Loading } from '../../components/loading/loading'
 import { GetUserLogado } from '../../utils/GetUser'
@@ -55,6 +58,13 @@ export function RelTodayContainer() {
             deleteByIdEntradaCorte(corte.id!).then(() => {
               invalidateQuery(
                 QueryKeyGetByListEntradaCorte(date, GetUserLogado()),
+              )
+
+              invalidateQuery(
+                QueryKeyGetTotalEntradaCorte(
+                  GetUserLogado(),
+                  date.getFullYear(),
+                ),
               )
             })
           }}
@@ -103,6 +113,14 @@ export function RelTodayContainer() {
                 invalidateQuery(
                   QueryKeyGetByListEntradaCorte(value.date, GetUserLogado()),
                 )
+
+                invalidateQuery(
+                  QueryKeyGetTotalEntradaCorte(
+                    GetUserLogado(),
+                    value.date.getFullYear(),
+                  ),
+                )
+
                 modalAddCorte.current?.close()
               })
             }}
