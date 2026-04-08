@@ -36,6 +36,11 @@ export default function PageOwnerWithHeaderAndBottomNavigate() {
           <span>Relatório</span>
         </NavLinkCommom>
 
+        <NavLinkCommom to="/expense">
+          <ShowIcon nameIcon="payments" />
+          <span>Despesas</span>
+        </NavLinkCommom>
+
         <NavLinkCommom to="/dashboard">
           <ShowIcon nameIcon="analytics" />
           <span>Dashboard</span>

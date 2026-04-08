@@ -2,6 +2,10 @@
   font-weight: 700;
 }
 
+.fontSize14 {
+  font-size: 14px;
+}
+
 .fontSize17 {
   font-size: 17px;
 }
@@ -16,6 +20,9 @@
 
 .colorCommom {
   color: #000000;
+}
+.colorWhite {
+  color: white;
 }
 
 .colorSuccess {

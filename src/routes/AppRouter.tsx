@@ -4,6 +4,7 @@ import { Private } from './Private'
 import { LoginContainer } from '../features/login/LoginContainer'
 import PageOwnerWithHeaderAndBottomNavigate from '../pages/pageOwner/PageOwnerWithHeaderAndBottomNavigate'
 import { DashboardPage } from '../pages/DashboardPage'
+import { ExpensePage } from '../pages/ExpensePage'
 
 export function AppRouter() {
   return (
@@ -22,6 +23,8 @@ export function AppRouter() {
           />
 
           <Route path="/dashboard" element={<DashboardPage />} />
+
+          <Route path="/expense" element={<ExpensePage />} />
         </Route>
       </Routes>
 

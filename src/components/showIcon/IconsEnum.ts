@@ -12,6 +12,7 @@ export enum IconsEnum {
   LOGOUT = 'logout',
   REL_TODAY = 'description',
   CHART = 'analytics',
+  EXPENSE = 'payments',
 }
 
 export type IconsType = `${(typeof IconsEnum)[keyof typeof IconsEnum]}`

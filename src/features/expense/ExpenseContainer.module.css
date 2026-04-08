@@ -1,0 +1,78 @@
+.containerTotalCard {
+  display: flex;
+  flex-direction: column;
+  background: hsl(35 80% 45%);
+  gap: 6px;
+  padding: 24px 20px;
+}
+
+.containerSubTitle {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.labelCountItens {
+  font-size: 0.9rem;
+}
+
+.iconWrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: hsl(35 80% 93%);
+  color: hsl(35 80% 45%);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: hsl(0 0% 100%);
+  border-radius: 0.75rem;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 2px hsl(220 15% 20% / 0.04);
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.description {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: hsl(140 10% 90%);
+}
+
+.meta {
+  font-size: 0.75rem;
+  color: hsl(220 10% 60%);
+  margin-top: 2px;
+}
+
+.right {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.amount {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: hsl(220 15% 20%);
+}
+
+.badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: hsl(0 62% 30%);
+  margin-top: 2px;
+  text-transform: uppercase;
+}

@@ -2,14 +2,16 @@ import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
+const env = import.meta.env
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyCpQDg-QETbMT486NZaocXJYgsiRpoSQYI',
-  authDomain: 'barber-finance-8fe5b.firebaseapp.com',
-  projectId: 'barber-finance-8fe5b',
-  storageBucket: 'barber-finance-8fe5b.firebasestorage.app',
-  messagingSenderId: '512103504007',
-  appId: '1:512103504007:web:c993ed6372c205f495c022',
-  measurementId: 'G-1C0623HTH2',
+  apiKey: env.VITE_FIREBASE_API_KEY,
+  authDomain: env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: env.VITE_FIREBASE_APP_ID,
+  measurementId: env.VITE_FIREBASE_MEASUREMENT_ID,
 }
 
 const app = initializeApp(firebaseConfig)
