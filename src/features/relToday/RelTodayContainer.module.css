@@ -1,14 +1,3 @@
-.footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%; /* Faz o rodapé ocupar toda a largura */
-  display: flex; /* Adiciona flexbox */
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center;
-  padding-bottom: 70px;
-}
-
 .allWidhtAndHeight {
   width: 100%;
   height: 100%;

@@ -1,0 +1,28 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: hsl(220 15% 20%);
+}
+
+.date {
+  font-size: 0.75rem;
+  color: hsl(220 10% 60%);
+  margin-top: 2px;
+}
+
+.right {
+  text-align: right;
+  flex-shrink: 0;
+}

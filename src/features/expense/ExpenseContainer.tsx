@@ -1,3 +1,4 @@
+import { ButtonCommom } from '../../components/button/ButtonCommom'
 import { Label } from '../../components/labels/Label'
 import { LabelTitle } from '../../components/labels/labelTitle/LabelTitle'
 import { Loading } from '../../components/loading/loading'
@@ -5,9 +6,11 @@ import { Navigation } from '../../components/navigation/Navigation'
 import ShowIcon from '../../components/showIcon/ShowIcon'
 import { ContainerBody } from '../../templates/ContainerBody/ContainerBody'
 import { ContainerRounded } from '../../templates/containerRounded/ContainerRounded'
+import { Footer } from '../../templates/footer/Footer'
 import { HeaderSecondary } from '../../templates/header/HeaderSecondary'
 import { formatDate } from '../../utils/Format/FormatDate'
 import { formatCurrency } from '../../utils/Format/FormatNumeric'
+import { ExpenseItem } from './components/ExpenseItem'
 import style from './ExpenseContainer.module.css'
 
 export function ExpenseContainer() {
@@ -43,23 +46,38 @@ export function ExpenseContainer() {
           </Label>
         </div>
 
-        <div className={style.item}>
-          <div className={style.iconWrapper}>
-            <ShowIcon nameIcon="payments" />
-          </div>
-          <div className={style.info}>
-            <Label fontWeight="600" className={style.amount}>
-              Aluguel
-            </Label>
-            <Label color="Secondary" className={style.meta}>
-              {formatDate(new Date())}
-            </Label>
-          </div>
-          <div className={style.right}>
-            <div className={style.amount}>{formatCurrency(1000)}</div>
-          </div>
+        <div className={style.containerItemExpense}>
+          <ExpenseItem
+            value={100}
+            description="Aluguel"
+            date={new Date()}
+            icon={{ nameIcon: 'payments' }}
+          />
+
+          <ExpenseItem
+            value={100}
+            description="Aluguel"
+            date={new Date()}
+            icon={{ nameIcon: 'payments' }}
+          />
         </div>
       </ContainerBody>
+
+      <Footer>
+        <ButtonCommom
+          //onClick={() => modalAddCorte.current?.open()}
+          optionButton="Success"
+          width="TamanhoMinimo"
+          styleFormat="Circle"
+        >
+          <ShowIcon
+            nameIcon="add"
+            onClick={() => {
+              //modalAddCorte.current?.open()
+            }}
+          />
+        </ButtonCommom>
+      </Footer>
     </Loading>
   )
 }

@@ -23,6 +23,7 @@ import { GetUserLogado } from '../../utils/GetUser'
 import { ContainerBody } from '../../templates/ContainerBody/ContainerBody'
 import { formatDate } from '../../utils/Format/FormatDate'
 import { Navigation } from '../../components/navigation/Navigation'
+import { Footer } from '../../templates/footer/Footer'
 
 export function RelTodayContainer() {
   const {
@@ -78,7 +79,7 @@ export function RelTodayContainer() {
         />
       </ContainerBody>
 
-      <div className={style.footer}>
+      <Footer>
         <ButtonCommom
           onClick={() => modalAddCorte.current?.open()}
           optionButton="Success"
@@ -126,7 +127,7 @@ export function RelTodayContainer() {
             }}
           />
         </ContainerModalFullScreen>
-      </div>
+      </Footer>
     </Loading>
   )
 }
