@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { ButtonCommom } from '../../components/button/ButtonCommom'
 import { Label } from '../../components/labels/Label'
 import { LabelTitle } from '../../components/labels/labelTitle/LabelTitle'
@@ -12,8 +13,15 @@ import { formatDate } from '../../utils/Format/FormatDate'
 import { formatCurrency } from '../../utils/Format/FormatNumeric'
 import { ExpenseItem } from './components/ExpenseItem'
 import style from './ExpenseContainer.module.css'
+import {
+  ContainerModalFullScreen,
+  type ContainerModalElement,
+} from '../../templates/ContainerModal/ContainerModalFullScreen'
+import { CadDespesa } from './cadExpense/CadDespesa'
 
 export function ExpenseContainer() {
+  const modalAddExpense = useRef<ContainerModalElement>(null)
+
   return (
     <Loading isLoading={false}>
       <HeaderSecondary>Despesas</HeaderSecondary>
@@ -65,7 +73,7 @@ export function ExpenseContainer() {
 
       <Footer>
         <ButtonCommom
-          //onClick={() => modalAddCorte.current?.open()}
+          onClick={() => modalAddExpense.current?.open()}
           optionButton="Success"
           width="TamanhoMinimo"
           styleFormat="Circle"
@@ -73,10 +81,19 @@ export function ExpenseContainer() {
           <ShowIcon
             nameIcon="add"
             onClick={() => {
-              //modalAddCorte.current?.open()
+              modalAddExpense.current?.open()
             }}
           />
         </ButtonCommom>
+
+        <ContainerModalFullScreen ref={modalAddExpense}>
+          <CadDespesa
+            onCancel={() => {
+              modalAddExpense.current?.close()
+            }}
+            onSuccess={() => {}}
+          />
+        </ContainerModalFullScreen>
       </Footer>
     </Loading>
   )

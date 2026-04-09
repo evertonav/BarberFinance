@@ -10,9 +10,3 @@
 .headerColor {
   background-color: #f4f6f9;
 }
-
-.containerButton {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}

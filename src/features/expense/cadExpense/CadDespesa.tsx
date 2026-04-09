@@ -1,41 +1,37 @@
 import { ButtonCommom } from '../../../components/button/ButtonCommom'
 import { LabelTitle } from '../../../components/labels/labelTitle/LabelTitle'
 import { ContainerRounded } from '../../../templates/containerRounded/ContainerRounded'
-
-import style from './CadCorte.module.css'
-import type { Corte } from '../../relToday/types'
+import style from './CadDespesa.module.css'
 import { useForm } from 'react-hook-form'
-
 import { zodResolver } from '@hookform/resolvers/zod'
 import { InputNumber } from '../../../components/input/InputNumber'
 import { DateWithController } from '../../../components/date/DateWithController'
 import { HeaderSecondary } from '../../../templates/header/HeaderSecondary'
 import {
-  schemaCadCorte,
-  type FormDataCadCorte,
-} from './schemas/SchemasValidationCadCorte'
+  schemaCadDespesa,
+  type FormDataCadDespesa,
+} from './schemas/SchemasValidationCadDespesa'
 import { FormCommom } from '../../../components/form/FormCommom'
 import { FooterRegister } from '../../../templates/footer/FooterRegister'
 
-interface CadCorteProps {
-  corte?: Partial<Corte>
-  onSuccess?: (value: Corte) => void
+interface CadDespesaProps {
+  // despesa?: Partial<Despesa>
+  onSuccess?: () => void
   onCancel?: () => void
 }
 
-export function CadCorte({ onSuccess, onCancel, corte }: CadCorteProps) {
+export function CadDespesa({ onSuccess, onCancel }: CadDespesaProps) {
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<FormDataCadCorte>({
-    resolver: zodResolver(schemaCadCorte),
+  } = useForm<FormDataCadDespesa>({
+    resolver: zodResolver(schemaCadDespesa),
     mode: 'onChange',
     defaultValues: {
-      quantity: corte?.quantity?.toString() ?? '1',
-      value: corte?.price?.toString() ?? '30',
-      date: corte?.date ?? new Date(),
+      value: '0',
+      dateReferencia: new Date(),
     },
   })
 
@@ -43,25 +39,20 @@ export function CadCorte({ onSuccess, onCancel, corte }: CadCorteProps) {
     <ContainerRounded className={style.container}>
       <HeaderSecondary className={style.headerColor}>
         <LabelTitle fontSize="20" color="Commom">
-          Adicionar corte
+          Adicionar despesa
         </LabelTitle>
       </HeaderSecondary>
 
       <FormCommom
-        onSubmit={handleSubmit((data: FormDataCadCorte) => {
-          onSuccess?.({
-            price: Number(data.value),
-            quantity: Number(data.quantity),
-            date: data.date,
-            total: Number(data.value) * Number(data.quantity),
-          })
+        onSubmit={handleSubmit((data: FormDataCadDespesa) => {
+          onSuccess?.()
         })}
       >
         <InputNumber
-          title="Quantidade "
-          register={register('quantity')}
-          error={!!errors.quantity}
-          helperText={errors.quantity?.message}
+          title="Descrição "
+          register={register('description')}
+          error={!!errors.description}
+          helperText={errors.description?.message}
         />
 
         <InputNumber
@@ -71,7 +62,11 @@ export function CadCorte({ onSuccess, onCancel, corte }: CadCorteProps) {
           helperText={errors.value?.message}
         />
 
-        <DateWithController name="date" control={control} label="Date" />
+        <DateWithController
+          name="dateReferencia"
+          control={control}
+          label="Data referência"
+        />
 
         <FooterRegister>
           <ButtonCommom
