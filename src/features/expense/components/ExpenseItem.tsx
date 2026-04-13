@@ -8,6 +8,7 @@ import { formatDate } from '../../../utils/Format/FormatDate'
 import { formatCurrency } from '../../../utils/Format/FormatNumeric'
 import style from './ExpenseItem.module.css'
 import type { Expense } from '../types'
+import { IconButton } from '@mui/material'
 
 interface ExpenseItemProps {
   expense: Omit<Expense, 'id'> & { id: string }
@@ -41,10 +42,12 @@ export function ExpenseItem({ expense, icon, onDelete }: ExpenseItemProps) {
       <div className={style.actions}>
         {/*<IconButton onClick={() => onEdit?.(expense)} aria-label="Editar">
           <Pencil size={16} />
-        </IconButton>
-        <IconButton onClick={() => onDelete?.(expense.id)} aria-label="Excluir">
-          <ShowIcon color="Delete" size="20px" nameIcon="delete" />
         </IconButton>*/}
+        {onDelete && (
+          <IconButton onClick={() => onDelete(expense.id)} aria-label="Excluir">
+            <ShowIcon color="Delete" size="20px" nameIcon="delete" />
+          </IconButton>
+        )}
       </div>
     </ContainerRounded>
   )

@@ -8,9 +8,13 @@ import { GetUserLogado } from '../../utils/GetUser'
 import { useAddExpense } from './hooks/AddExpenseHook'
 import { useGetByListExpense } from './hooks/GetByListExpenseHook'
 import type { ExpenseResponse } from './types'
+import { useDeleteByIdExpense } from './hooks/DeleteByIdExpenseHook'
+import { useInvalidateQuery } from '../../hooks/InvalidateQueryHook'
+import { QueryKeyGetListExpense } from '../../queryKey/QueryKeyGetExpense'
 
 export function useExpenseContainer() {
   const { addExpense, returnExecutionAddExpense } = useAddExpense()
+  const { invalidateQuery } = useInvalidateQuery()
 
   const {
     dateAndMonthView,
@@ -26,6 +30,9 @@ export function useExpenseContainer() {
     GetUserLogado(),
   )
 
+  const { deleteByIdExpense, returnExecutionDeleteExpense } =
+    useDeleteByIdExpense()
+
   const listExpenseFront: ExpenseResponse[] = useMemo(() => {
     return listExpense.map((item) => {
       return {
@@ -37,10 +44,22 @@ export function useExpenseContainer() {
     })
   }, [listExpense])
 
+  function atualizarListExpense() {
+    invalidateQuery(
+      QueryKeyGetListExpense(GetUserLogado(), dateInitial, dateFinish),
+    )
+  }
+
   return {
     addExpense,
+    deleteByIdExpense,
+    atualizarListExpense,
+
     isLoading:
-      returnExecutionAddExpense.isPending || returnGetByListExpense.isLoading,
+      returnExecutionAddExpense.isPending ||
+      returnGetByListExpense.isLoading ||
+      returnExecutionDeleteExpense.isPending,
+
     listExpenseFront,
     dateAndMonthView,
     nextMotnthAndYear,
