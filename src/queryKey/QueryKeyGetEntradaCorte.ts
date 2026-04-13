@@ -1,5 +1,9 @@
-export function QueryKeyGetByListEntradaCorte(date?: Date, user?: string) {
-  return ['GetByListEntradaCorte', date, user]
+export function QueryKeyGetByListEntradaCorte(
+  dateInitial?: Date,
+  dateFinish?: Date,
+  user?: string,
+) {
+  return ['GetByListEntradaCorte', dateInitial, dateFinish, user]
 }
 
 export function QueryKeyGetTotalEntradaCorte(user?: string, year?: number) {

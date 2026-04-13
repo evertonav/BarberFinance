@@ -11,30 +11,28 @@ import { CadCorte } from '../corte/cadCorte/CadCorte'
 import { ButtonCommom } from '../../components/button/ButtonCommom'
 import type { Corte } from '../corte/types'
 import { useRelToday } from './hooks/RelTodayHook'
-import { useInvalidateQuery } from '../../hooks/InvalidateQueryHook'
-import {
-  QueryKeyGetByListEntradaCorte,
-  QueryKeyGetTotalEntradaCorte,
-} from '../../queryKey/QueryKeyGetEntradaCorte'
+
 import toast from 'react-hot-toast'
 import { Loading } from '../../components/loading/loading'
 import { GetUserLogado } from '../../utils/GetUser'
 import { ContainerBody } from '../../templates/ContainerBody/ContainerBody'
-import { formatDate } from '../../utils/Format/FormatDate'
 import { Navigation } from '../../components/navigation/Navigation'
 import { Footer } from '../../templates/footer/Footer'
 
 export function RelTodayContainer() {
   const {
-    date,
+    nextMotnthAndYear,
+    previousMonthAndYear,
     listCortes,
-    setDate,
+    dateAndMonthView,
     addEntradaCorte,
     deleteByIdEntradaCorte,
     isLoading,
+    updateItemsCortesAndTotal,
+    getDate,
   } = useRelToday()
+
   const modalAddCorte = useRef<ContainerModalElement>(null)
-  const { invalidateQuery } = useInvalidateQuery()
 
   return (
     <Loading isLoading={isLoading}>
@@ -42,10 +40,10 @@ export function RelTodayContainer() {
 
       <ContainerBody>
         <Navigation
-          onPrevious={() => setDate(new Date(date.setDate(date.getDate() - 1)))}
-          onNext={() => setDate(new Date(date.setDate(date.getDate() + 1)))}
+          onPrevious={previousMonthAndYear}
+          onNext={nextMotnthAndYear}
         >
-          {formatDate(date)}
+          {dateAndMonthView}
         </Navigation>
 
         <ListCorteTotalized
@@ -56,16 +54,7 @@ export function RelTodayContainer() {
             }
 
             deleteByIdEntradaCorte(corte.id!).then(() => {
-              invalidateQuery(
-                QueryKeyGetByListEntradaCorte(date, GetUserLogado()),
-              )
-
-              invalidateQuery(
-                QueryKeyGetTotalEntradaCorte(
-                  GetUserLogado(),
-                  date.getFullYear(),
-                ),
-              )
+              updateItemsCortesAndTotal()
             })
           }}
           listCortes={{
@@ -95,7 +84,7 @@ export function RelTodayContainer() {
 
         <ContainerModalFullScreen ref={modalAddCorte}>
           <CadCorte
-            corte={{ date: date }}
+            corte={{ date: getDate() }}
             onCancel={() => {
               modalAddCorte.current?.close()
             }}
@@ -110,16 +99,7 @@ export function RelTodayContainer() {
               }
 
               addEntradaCorte(value, user).then(() => {
-                invalidateQuery(
-                  QueryKeyGetByListEntradaCorte(value.date, GetUserLogado()),
-                )
-
-                invalidateQuery(
-                  QueryKeyGetTotalEntradaCorte(
-                    GetUserLogado(),
-                    value.date.getFullYear(),
-                  ),
-                )
+                updateItemsCortesAndTotal()
 
                 modalAddCorte.current?.close()
               })
