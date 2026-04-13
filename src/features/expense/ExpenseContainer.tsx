@@ -27,7 +27,7 @@ export function ExpenseContainer() {
   const modalAddExpense = useRef<ContainerModalElement>(null)
   const {
     addExpense,
-    listExpense,
+    listExpenseFront,
     isLoading,
     dateAndMonthView,
     nextMotnthAndYear,
@@ -55,7 +55,7 @@ export function ExpenseContainer() {
             className={style.totalExpense}
           >
             {formatCurrency(
-              listExpense.reduce((acc, item) => acc + item.value, 0),
+              listExpenseFront.reduce((acc, item) => acc + item.value, 0),
             )}
           </LabelTitle>
         </ContainerRounded>
@@ -68,18 +68,19 @@ export function ExpenseContainer() {
             fontWeight="500"
             className={style.labelCountItens}
           >
-            {listExpense.length} itens
+            {listExpenseFront.length} itens
           </Label>
         </div>
 
         <div className={style.containerItemExpense}>
-          {listExpense.map((item) => (
+          {listExpenseFront.map((item) => (
             <ExpenseItem
               key={item.id}
-              value={item.value}
-              description={item.description}
-              date={item.dateReference}
+              expense={item}
               icon={{ nameIcon: 'payments' }}
+              onDelete={(id: string) => {
+                console.log('id: ', id)
+              }}
             />
           ))}
         </div>

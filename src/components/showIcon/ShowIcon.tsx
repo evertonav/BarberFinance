@@ -4,8 +4,8 @@ import style from './ShowIcon.module.css'
 
 export interface ShowIconProps extends HTMLAttributes<HTMLSpanElement> {
   nameIcon: IconsType
-  size?: '22px'
-  color?: 'Success'
+  size?: '22px' | '20px'
+  color?: 'Success' | 'Delete'
 }
 
 export default function ShowIcon({

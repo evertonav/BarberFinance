@@ -1,12 +1,12 @@
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import { nameTableExpense, type EntityExpense } from './types'
+import { nameTableExpense, type EntityExpenseResponse } from './types'
 import { db } from '../../FirebaseConnection'
 
 export async function GetListExpense(
   dateInitial: Date,
   dateFinish: Date,
   user: string,
-): Promise<EntityExpense[]> {
+): Promise<EntityExpenseResponse[]> {
   const entradaCorte = collection(db, nameTableExpense)
   const queryRef = query(
     entradaCorte,
@@ -17,7 +17,7 @@ export async function GetListExpense(
 
   const querySnapshot = await getDocs(queryRef)
 
-  let listExpense: Array<EntityExpense> = []
+  let listExpense: Array<EntityExpenseResponse> = []
 
   querySnapshot.forEach((doc) => {
     listExpense.push({

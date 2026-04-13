@@ -7,20 +7,15 @@ import { ContainerRounded } from '../../../templates/containerRounded/ContainerR
 import { formatDate } from '../../../utils/Format/FormatDate'
 import { formatCurrency } from '../../../utils/Format/FormatNumeric'
 import style from './ExpenseItem.module.css'
+import type { Expense } from '../types'
 
 interface ExpenseItemProps {
-  description: string
-  value: number
-  date: Date
+  expense: Omit<Expense, 'id'> & { id: string }
   icon: ShowIconProps
+  onDelete?: (id: string) => void
 }
 
-export function ExpenseItem({
-  date,
-  icon,
-  description,
-  value,
-}: ExpenseItemProps) {
+export function ExpenseItem({ expense, icon, onDelete }: ExpenseItemProps) {
   return (
     <ContainerRounded className={style.item}>
       <IconWrapper>
@@ -29,16 +24,27 @@ export function ExpenseItem({
 
       <div className={style.info}>
         <Label fontWeight="600" className={style.title}>
-          {description}
+          {expense.description}
         </Label>
+
         <Label color="Secondary" className={style.date}>
-          {formatDate(date)}
+          {formatDate(expense.dateReference)}
         </Label>
       </div>
+
       <div className={style.right}>
         <Label fontWeight="600" className={style.title}>
-          {formatCurrency(value)}
+          {formatCurrency(expense.value)}
         </Label>
+      </div>
+
+      <div className={style.actions}>
+        {/*<IconButton onClick={() => onEdit?.(expense)} aria-label="Editar">
+          <Pencil size={16} />
+        </IconButton>
+        <IconButton onClick={() => onDelete?.(expense.id)} aria-label="Excluir">
+          <ShowIcon color="Delete" size="20px" nameIcon="delete" />
+        </IconButton>*/}
       </div>
     </ContainerRounded>
   )

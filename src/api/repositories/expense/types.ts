@@ -6,4 +6,8 @@ export interface EntityExpense {
   user: string
 }
 
+export interface EntityExpenseResponse extends Omit<EntityExpense, 'id'> {
+  id: string
+}
+
 export const nameTableExpense = 'Expense'

@@ -14,7 +14,6 @@ import {
 import { FormCommom } from '../../../components/form/FormCommom'
 import { FooterRegister } from '../../../templates/footer/FooterRegister'
 import type { Expense } from '../types'
-import { Input } from '@mui/material'
 import InputCommonMUI from '../../../components/input/InputCommonMUI'
 
 interface CadExpenseProps {

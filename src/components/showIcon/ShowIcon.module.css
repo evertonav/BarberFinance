@@ -2,6 +2,14 @@
   font-size: 22px;
 }
 
+.iconSize20px {
+  font-size: 20px;
+}
+
 .colorSuccess {
   color: #28ae65;
+}
+
+.colorDelete {
+  color: #ef4444;
 }
