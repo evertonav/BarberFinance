@@ -9,7 +9,6 @@ import { ContainerBody } from '../../templates/ContainerBody/ContainerBody'
 import { ContainerRounded } from '../../templates/containerRounded/ContainerRounded'
 import { Footer } from '../../templates/footer/Footer'
 import { HeaderSecondary } from '../../templates/header/HeaderSecondary'
-import { formatDate } from '../../utils/Format/FormatDate'
 import { formatCurrency } from '../../utils/Format/FormatNumeric'
 import { ExpenseItem } from './components/ExpenseItem'
 import style from './ExpenseContainer.module.css'
@@ -17,18 +16,35 @@ import {
   ContainerModalFullScreen,
   type ContainerModalElement,
 } from '../../templates/ContainerModal/ContainerModalFullScreen'
-import { CadDespesa } from './cadExpense/CadDespesa'
+import { CadDespesa } from './cadExpense/CadExpense'
+import { useExpenseContainer } from './ExpenseContainerHook'
+import type { Expense } from './types'
+import { GetUserLogado } from '../../utils/GetUser'
+import { useInvalidateQuery } from '../../hooks/InvalidateQueryHook'
+import { QueryKeyGetListExpense } from '../../queryKey/QueryKeyGetExpense'
 
 export function ExpenseContainer() {
   const modalAddExpense = useRef<ContainerModalElement>(null)
+  const {
+    addExpense,
+    listExpense,
+    isLoading,
+    dateAndMonthView,
+    nextMotnthAndYear,
+    previousMonthAndYear,
+  } = useExpenseContainer()
+  const { invalidateQuery } = useInvalidateQuery()
 
   return (
-    <Loading isLoading={false}>
+    <Loading isLoading={isLoading}>
       <HeaderSecondary>Despesas</HeaderSecondary>
 
       <ContainerBody>
-        <Navigation onNext={() => {}} onPrevious={() => {}}>
-          {formatDate(new Date())}
+        <Navigation
+          onNext={nextMotnthAndYear}
+          onPrevious={previousMonthAndYear}
+        >
+          {dateAndMonthView}
         </Navigation>
 
         <ContainerRounded className={style.containerTotalCard}>
@@ -38,7 +54,9 @@ export function ExpenseContainer() {
             color="White"
             className={style.totalExpense}
           >
-            {formatCurrency(5000)}
+            {formatCurrency(
+              listExpense.reduce((acc, item) => acc + item.value, 0),
+            )}
           </LabelTitle>
         </ContainerRounded>
 
@@ -50,24 +68,20 @@ export function ExpenseContainer() {
             fontWeight="500"
             className={style.labelCountItens}
           >
-            3 itens
+            {listExpense.length} itens
           </Label>
         </div>
 
         <div className={style.containerItemExpense}>
-          <ExpenseItem
-            value={100}
-            description="Aluguel"
-            date={new Date()}
-            icon={{ nameIcon: 'payments' }}
-          />
-
-          <ExpenseItem
-            value={100}
-            description="Aluguel"
-            date={new Date()}
-            icon={{ nameIcon: 'payments' }}
-          />
+          {listExpense.map((item) => (
+            <ExpenseItem
+              key={item.id}
+              value={item.value}
+              description={item.description}
+              date={item.dateReference}
+              icon={{ nameIcon: 'payments' }}
+            />
+          ))}
         </div>
       </ContainerBody>
 
@@ -91,7 +105,18 @@ export function ExpenseContainer() {
             onCancel={() => {
               modalAddExpense.current?.close()
             }}
-            onSuccess={() => {}}
+            onSuccess={(expense: Expense) => {
+              addExpense(expense, GetUserLogado()).then(() => {
+                modalAddExpense.current?.close()
+                invalidateQuery(
+                  QueryKeyGetListExpense(
+                    GetUserLogado(),
+                    new Date(2026, 4, 8),
+                    new Date(2026, 4, 9),
+                  ),
+                )
+              })
+            }}
           />
         </ContainerModalFullScreen>
       </Footer>

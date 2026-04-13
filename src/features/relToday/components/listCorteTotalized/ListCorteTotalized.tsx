@@ -8,7 +8,7 @@ import { ContainerLine } from '../../../../templates/ContainerLine/ContainerLine
 import { Label } from '../../../../components/labels/Label'
 import type { ListCorteWithTotalized } from './types'
 import ShowIcon from '../../../../components/showIcon/ShowIcon'
-import type { Corte } from '../../types'
+import type { Corte } from '../../../corte/types'
 
 interface ListCorteTotalizedProps {
   listCortes: ListCorteWithTotalized

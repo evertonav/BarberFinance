@@ -3,7 +3,7 @@ import { LabelTitle } from '../../../components/labels/labelTitle/LabelTitle'
 import { ContainerRounded } from '../../../templates/containerRounded/ContainerRounded'
 
 import style from './CadCorte.module.css'
-import type { Corte } from '../../relToday/types'
+import type { Corte } from '../types'
 import { useForm } from 'react-hook-form'
 
 import { zodResolver } from '@hookform/resolvers/zod'

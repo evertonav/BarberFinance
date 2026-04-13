@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useAddEntradaCorte } from '../../corte/hooks/entradaCorte/AddEntradaCorteHook'
 import { useGetByListEntradaCorte } from '../../corte/hooks/entradaCorte/get/GetByListEntradaCorteHook'
-import type { Corte } from '../types'
+import type { Corte } from '../../corte/types'
 import { useDeleteByIdEntradaCorte } from '../../corte/hooks/entradaCorte/DeleteByIdEntradaCorteHook'
 import { GetUserLogado } from '../../../utils/GetUser'
 

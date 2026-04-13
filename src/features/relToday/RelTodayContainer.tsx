@@ -1,7 +1,6 @@
 import ShowIcon from '../../components/showIcon/ShowIcon'
 
 import { HeaderSecondary } from '../../templates/header/HeaderSecondary'
-import style from './RelTodayContainer.module.css'
 import { ListCorteTotalized } from './components/listCorteTotalized/ListCorteTotalized'
 import { useRef } from 'react'
 import {
@@ -10,7 +9,7 @@ import {
 } from '../../templates/ContainerModal/ContainerModalFullScreen'
 import { CadCorte } from '../corte/cadCorte/CadCorte'
 import { ButtonCommom } from '../../components/button/ButtonCommom'
-import type { Corte } from './types'
+import type { Corte } from '../corte/types'
 import { useRelToday } from './hooks/RelTodayHook'
 import { useInvalidateQuery } from '../../hooks/InvalidateQueryHook'
 import {

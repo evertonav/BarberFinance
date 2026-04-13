@@ -1,7 +1,7 @@
 import { ButtonCommom } from '../../../components/button/ButtonCommom'
 import { LabelTitle } from '../../../components/labels/labelTitle/LabelTitle'
 import { ContainerRounded } from '../../../templates/containerRounded/ContainerRounded'
-import style from './CadDespesa.module.css'
+import style from './CadExpense.module.css'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { InputNumber } from '../../../components/input/InputNumber'
@@ -13,14 +13,17 @@ import {
 } from './schemas/SchemasValidationCadDespesa'
 import { FormCommom } from '../../../components/form/FormCommom'
 import { FooterRegister } from '../../../templates/footer/FooterRegister'
+import type { Expense } from '../types'
+import { Input } from '@mui/material'
+import InputCommonMUI from '../../../components/input/InputCommonMUI'
 
-interface CadDespesaProps {
+interface CadExpenseProps {
   // despesa?: Partial<Despesa>
-  onSuccess?: () => void
+  onSuccess?: (expense: Expense) => void
   onCancel?: () => void
 }
 
-export function CadDespesa({ onSuccess, onCancel }: CadDespesaProps) {
+export function CadDespesa({ onSuccess, onCancel }: CadExpenseProps) {
   const {
     register,
     handleSubmit,
@@ -30,7 +33,8 @@ export function CadDespesa({ onSuccess, onCancel }: CadDespesaProps) {
     resolver: zodResolver(schemaCadDespesa),
     mode: 'onChange',
     defaultValues: {
-      value: '0',
+      description: '',
+      value: '',
       dateReferencia: new Date(),
     },
   })
@@ -45,10 +49,14 @@ export function CadDespesa({ onSuccess, onCancel }: CadDespesaProps) {
 
       <FormCommom
         onSubmit={handleSubmit((data: FormDataCadDespesa) => {
-          onSuccess?.()
+          onSuccess?.({
+            dateReference: data.dateReferencia,
+            description: data.description,
+            value: Number(data.value),
+          })
         })}
       >
-        <InputNumber
+        <InputCommonMUI
           title="Descrição "
           register={register('description')}
           error={!!errors.description}
