@@ -10,7 +10,6 @@ import {
 import { CadCorte } from '../corte/cadCorte/CadCorte'
 import { ButtonCommom } from '../../components/button/ButtonCommom'
 import type { Corte } from '../corte/types'
-import { useRelToday } from './hooks/RelTodayHook'
 
 import toast from 'react-hot-toast'
 import { Loading } from '../../components/loading/loading'
@@ -18,8 +17,9 @@ import { GetUserLogado } from '../../utils/GetUser'
 import { ContainerBody } from '../../templates/ContainerBody/ContainerBody'
 import { Navigation } from '../../components/navigation/Navigation'
 import { Footer } from '../../templates/footer/Footer'
+import { useRevenueContainer } from './RevenueContainerHook'
 
-export function RelTodayContainer() {
+export function RevenueContainer() {
   const {
     nextMotnthAndYear,
     previousMonthAndYear,
@@ -30,13 +30,13 @@ export function RelTodayContainer() {
     isLoading,
     updateItemsCortesAndTotal,
     getDate,
-  } = useRelToday()
+  } = useRevenueContainer()
 
   const modalAddCorte = useRef<ContainerModalElement>(null)
 
   return (
     <Loading isLoading={isLoading}>
-      <HeaderSecondary>Relatório diário</HeaderSecondary>
+      <HeaderSecondary>Recebimentos</HeaderSecondary>
 
       <ContainerBody>
         <Navigation

@@ -21,10 +21,19 @@
 .colorCommom {
   color: #000000;
 }
+
 .colorWhite {
   color: white;
 }
 
+.colorWarning {
+  color: #cf8217;
+}
+
 .colorSuccess {
   color: #28ae65;
+}
+
+.colorError {
+  color: #ef4444;
 }

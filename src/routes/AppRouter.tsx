@@ -1,23 +1,23 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { RelTodayPage } from '../pages/RelTodayPage'
 import { Private } from './Private'
 import { LoginContainer } from '../features/login/LoginContainer'
 import PageOwnerWithHeaderAndBottomNavigate from '../pages/pageOwner/PageOwnerWithHeaderAndBottomNavigate'
 import { DashboardPage } from '../pages/DashboardPage'
 import { ExpensePage } from '../pages/ExpensePage'
+import { RevenuePage } from '../pages/RevenuePage'
 
 export function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<PageOwnerWithHeaderAndBottomNavigate />}>
-          <Route index element={<Navigate to="/report" replace />} />
+          <Route index element={<Navigate to="/revenue" replace />} />
 
           <Route
-            path="/report"
+            path="/revenue"
             element={
               <Private>
-                <RelTodayPage />
+                <RevenuePage />
               </Private>
             }
           />

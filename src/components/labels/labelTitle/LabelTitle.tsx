@@ -1,8 +1,11 @@
 import type { LabelProps } from '../Label'
 import style from './LabelTitle.module.css'
 
-interface LabelTitleProps extends Omit<LabelProps, 'color' | 'fontWeight'> {
-  color?: 'Commom' | 'Success' | 'White'
+export interface LabelTitleProps extends Omit<
+  LabelProps,
+  'color' | 'fontSize'
+> {
+  color?: 'Commom' | 'Success' | 'White' | 'Warning' | 'Error'
   fontSize?: '14' | '17' | '19' | '20'
 }
 

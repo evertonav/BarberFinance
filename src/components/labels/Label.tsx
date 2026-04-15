@@ -6,6 +6,7 @@ export interface LabelProps {
   className?: string
   fontWeight?: '500' | '600' | '700'
   color?: 'Primary' | 'Secondary'
+  fontSize?: '14'
 }
 
 export function Label({
@@ -13,11 +14,13 @@ export function Label({
   className,
   fontWeight = '500',
   color = 'Primary',
+  fontSize,
 }: LabelProps) {
   return (
     <div
       className={`${style[`fontWeight${fontWeight}`]} 
       ${style[`color${color}`]}  
+      ${style[`fontSize${fontSize}`]}
       ${className}`}
     >
       {children}

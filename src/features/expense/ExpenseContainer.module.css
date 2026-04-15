@@ -1,7 +1,7 @@
 .containerTotalCard {
   display: flex;
   flex-direction: column;
-  background: hsl(35 80% 45%);
+  background: #cf8217;
   gap: 6px;
   padding: 24px 20px;
 }

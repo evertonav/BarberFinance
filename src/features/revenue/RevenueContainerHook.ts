@@ -1,16 +1,16 @@
-import { useAddEntradaCorte } from '../../corte/hooks/entradaCorte/AddEntradaCorteHook'
-import { useGetByListEntradaCorte } from '../../corte/hooks/entradaCorte/get/GetByListEntradaCorteHook'
-import type { Corte } from '../../corte/types'
-import { useDeleteByIdEntradaCorte } from '../../corte/hooks/entradaCorte/DeleteByIdEntradaCorteHook'
-import { GetUserLogado } from '../../../utils/GetUser'
-import { useNavigationMonthAndYear } from '../../../components/navigation/hooks/NavigationMonthAndYearHook'
-import { useInvalidateQuery } from '../../../hooks/InvalidateQueryHook'
+import { useAddEntradaCorte } from '../corte/hooks/entradaCorte/AddEntradaCorteHook'
+import { useGetByListEntradaCorte } from '../corte/hooks/entradaCorte/get/GetByListEntradaCorteHook'
+import type { Corte } from '../corte/types'
+import { useDeleteByIdEntradaCorte } from '../corte/hooks/entradaCorte/DeleteByIdEntradaCorteHook'
+import { GetUserLogado } from '../../utils/GetUser'
+import { useNavigationMonthAndYear } from '../../components/navigation/hooks/NavigationMonthAndYearHook'
+import { useInvalidateQuery } from '../../hooks/InvalidateQueryHook'
 import {
   QueryKeyGetByListEntradaCorte,
   QueryKeyGetTotalEntradaCorte,
-} from '../../../queryKey/QueryKeyGetEntradaCorte'
+} from '../../queryKey/QueryKeyGetEntradaCorte'
 
-export function useRelToday() {
+export function useRevenueContainer() {
   const {
     dateInitial,
     dateFinish,

@@ -31,9 +31,9 @@ export default function PageOwnerWithHeaderAndBottomNavigate() {
       </div>
 
       <ContainerNavBottom>
-        <NavLinkCommom to="/report">
-          <ShowIcon nameIcon="description" />
-          <span>Relatório</span>
+        <NavLinkCommom to="/revenue">
+          <ShowIcon nameIcon="attach_money" />
+          <span>Recebimentos</span>
         </NavLinkCommom>
 
         <NavLinkCommom to="/expense">
