@@ -14,6 +14,7 @@ import { ContainerRounded } from '../../templates/containerRounded/ContainerRoun
 import { FormControl, MenuItem, Select } from '@mui/material'
 
 import { Card } from './components/Card'
+import { SelectCommomMui } from '../../components/select/SelectCommomMui'
 
 export function DashboardContainer() {
   const {
@@ -57,30 +58,11 @@ export function DashboardContainer() {
               <div className={style.containerHeaderDash}>
                 <div>Recebimentos por mês</div>
                 <FormControl size="small">
-                  <Select
-                    value={'12'}
-                    onChange={(e) => {}}
-                    sx={{
-                      fontSize: '0.8rem',
-                      fontWeight: 600,
-                      color: 'hsl(220 15% 20%)',
-                      bgcolor: 'hsl(140 15% 92%)',
-                      borderRadius: '0.75rem',
-                      '.MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'hsl(140 10% 90%)',
-                      },
-                      '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'hsl(220 10% 50%)',
-                      },
-                      '.MuiSelect-select': {
-                        padding: '6px 10px',
-                      },
-                    }}
-                  >
+                  <SelectCommomMui value={'12'}>
                     <MenuItem value={12}>1 ano</MenuItem>
                     <MenuItem value={6}>6 meses</MenuItem>
                     <MenuItem value={3}>3 meses</MenuItem>
-                  </Select>
+                  </SelectCommomMui>
                 </FormControl>
               </div>
             ),
