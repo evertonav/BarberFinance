@@ -11,19 +11,23 @@ import { MonthsDescription, MonthsEnum } from '../../enums/MonthsEnum'
 import { formatCurrency } from '../../utils/Format/FormatNumeric'
 import { useDashBoardContainer } from './DashBoardContainerHook'
 import { ContainerRounded } from '../../templates/containerRounded/ContainerRounded'
-import { FormControl, MenuItem, Select } from '@mui/material'
+import { FormControl, MenuItem } from '@mui/material'
 
 import { Card } from './components/Card'
 import { SelectCommomMui } from '../../components/select/SelectCommomMui'
+import {
+  FiltersMonthOldValuesDescription,
+  type FiltersMonthOldValues,
+} from './filters/FiltersMonthOld'
 
 export function DashboardContainer() {
   const {
     listMonthTotalEntradaCorte,
     maxValorTotalEntradaCorte,
-    nextYear,
-    previousYear,
+
     isLoading,
-    yearState,
+    filterMonthOldRevenue,
+    setFilterMonthOldRevenue,
   } = useDashBoardContainer()
 
   return (
@@ -32,9 +36,7 @@ export function DashboardContainer() {
 
       <ContainerBody>
         <ContainerRounded className={style.containerFaturamento}>
-          <Navigation onNext={nextYear} onPrevious={previousYear}>
-            {'Julho/2026'}
-          </Navigation>
+          <Navigation>{'Julho/2026'}</Navigation>
 
           <Card
             labelDescription={{ children: 'Recebimentos' }}
@@ -57,11 +59,25 @@ export function DashboardContainer() {
             children: (
               <div className={style.containerHeaderDash}>
                 <div>Recebimentos por mês</div>
+
                 <FormControl size="small">
-                  <SelectCommomMui value={'12'}>
-                    <MenuItem value={12}>1 ano</MenuItem>
-                    <MenuItem value={6}>6 meses</MenuItem>
-                    <MenuItem value={3}>3 meses</MenuItem>
+                  <SelectCommomMui
+                    value={filterMonthOldRevenue}
+                    onChange={(event) => {
+                      setFilterMonthOldRevenue(
+                        event.target.value as FiltersMonthOldValues,
+                      )
+                    }}
+                  >
+                    <MenuItem value={'12'}>
+                      {FiltersMonthOldValuesDescription['12']}
+                    </MenuItem>
+                    <MenuItem value={'6'}>
+                      {FiltersMonthOldValuesDescription['6']}
+                    </MenuItem>
+                    <MenuItem value={'3'}>
+                      {FiltersMonthOldValuesDescription['3']}
+                    </MenuItem>
                   </SelectCommomMui>
                 </FormControl>
               </div>
@@ -85,7 +101,7 @@ export function DashboardContainer() {
                       )}
                       key={index}
                       labelTitle={{
-                        children: MonthsDescription[item.month as MonthsEnum],
+                        children: `${MonthsDescription[item.month as MonthsEnum]}/${item.year}`,
                       }}
                       labelValue={{ children: formatCurrency(item.total) }}
                     />

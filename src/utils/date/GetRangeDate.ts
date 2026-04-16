@@ -1,3 +1,5 @@
+import dayjs from 'dayjs'
+
 export function GetFirstDayMonth(dateReference?: Date): Date {
   let dateReferenceInternal = new Date()
 
@@ -28,4 +30,19 @@ export function GetLastDayMonth(dateReference?: Date): Date {
   date.setDate(date.getDate() - 1)
 
   return date
+}
+
+export function GetListMonthsForRangeToDate(
+  dateInitial: Date,
+  dateFinish: Date,
+) {
+  const dateInitialFilter = dayjs(dateInitial)
+  const dateFinishFilter = dayjs(dateFinish)
+
+  const months = Array.from(
+    { length: dateFinishFilter.diff(dateInitialFilter, 'months') + 1 },
+    (_, index) => dateInitialFilter.clone().add(index, 'months').toDate(),
+  )
+
+  return months
 }

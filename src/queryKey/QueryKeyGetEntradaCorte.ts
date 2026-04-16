@@ -9,3 +9,11 @@ export function QueryKeyGetByListEntradaCorte(
 export function QueryKeyGetTotalEntradaCorte(user?: string, year?: number) {
   return ['GetTotalMonthsEntradaCorte', user, year]
 }
+
+export function QueryKeyGetTotalEntradaCorteRange(
+  user?: string,
+  dateInitial?: Date,
+  dateFinish?: Date,
+) {
+  return ['GetTotalMonthsEntradaCorteRange', user, dateInitial, dateFinish]
+}

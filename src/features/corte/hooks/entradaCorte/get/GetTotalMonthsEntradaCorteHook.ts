@@ -26,6 +26,7 @@ export function useGetTotalMonthsEntradaCorte(user?: string, year?: number) {
           (value: number) => {
             return {
               month: m,
+              year: year!!,
               total: value,
             } as GetTotalMotnhsResponse
           },
