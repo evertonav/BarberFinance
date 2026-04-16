@@ -1,15 +1,13 @@
 import { useMemo, useState } from 'react'
-
-import { GetUserLogado } from '../../utils/GetUser'
-
-import type { GetTotalMotnhsResponse } from '../corte/hooks/entradaCorte/get/types'
 import {
   filtersMonthOldValuesToDate,
   type FiltersMonthOldValues,
-} from './filters/FiltersMonthOld'
-import { useGetTotalMonthsEntradaCorteRange } from '../corte/hooks/entradaCorte/get/GetTotalForMonthsEntradaCorteRangeHook'
+} from '../filters/FiltersMonthOld'
+import type { GetTotalMotnhsResponse } from '../../corte/hooks/entradaCorte/get/types'
+import { useGetTotalMonthsEntradaCorteRange } from '../../corte/hooks/entradaCorte/get/GetTotalForMonthsEntradaCorteRangeHook'
+import { GetUserLogado } from '../../../utils/GetUser'
 
-export function useDashBoardContainer() {
+export function useDashRevenueForMonth() {
   const [filterMonthOldRevenue, setFilterMonthOldRevenue] =
     useState<FiltersMonthOldValues>('3')
 
@@ -37,10 +35,10 @@ export function useDashBoardContainer() {
   }, [listMonthTotalEntradaCorte])
 
   return {
-    listMonthTotalEntradaCorte,
-    maxValorTotalEntradaCorte,
-    isLoading: returnGetTotalEntradaCorte.isLoading,
     filterMonthOldRevenue,
     setFilterMonthOldRevenue,
+    maxValorTotalEntradaCorte,
+    isLoading: returnGetTotalEntradaCorte.isLoading,
+    listMonthTotalEntradaCorte,
   }
 }
