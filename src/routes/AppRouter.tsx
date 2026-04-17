@@ -22,9 +22,23 @@ export function AppRouter() {
             }
           />
 
-          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <Private>
+                <DashboardPage />
+              </Private>
+            }
+          />
 
-          <Route path="/expense" element={<ExpensePage />} />
+          <Route
+            path="/expense"
+            element={
+              <Private>
+                <ExpensePage />
+              </Private>
+            }
+          />
         </Route>
       </Routes>
 
