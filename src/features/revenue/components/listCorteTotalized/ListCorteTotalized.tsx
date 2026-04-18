@@ -41,18 +41,10 @@ export function ListCorteTotalized({
                 />
               </div>
             </ContainerRowWithSpaceBetween>
-
-            <ContainerLine />
+            {index !== listCortes.cortes.length - 1 && <ContainerLine />}
           </div>
         )
       })}
-
-      <ContainerRowWithSpaceBetween>
-        <LabelTitle>Total do dia</LabelTitle>
-        <LabelTitle color="Success">
-          R$ {listCortes.totalized.toFixed(2)}
-        </LabelTitle>
-      </ContainerRowWithSpaceBetween>
     </ContainerRounded>
   )
 }

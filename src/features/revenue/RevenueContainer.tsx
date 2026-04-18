@@ -18,6 +18,8 @@ import { ContainerBody } from '../../templates/ContainerBody/ContainerBody'
 import { Navigation } from '../../components/navigation/Navigation'
 import { Footer } from '../../templates/footer/Footer'
 import { useRevenueContainer } from './RevenueContainerHook'
+import { CardTotalizador } from '../../components/card/CardTotalizador'
+import { formatCurrency } from '../../utils/Format/FormatNumeric'
 
 export function RevenueContainer() {
   const {
@@ -46,6 +48,15 @@ export function RevenueContainer() {
           {dateAndMonthView}
         </Navigation>
 
+        <CardTotalizador
+          title={{ children: 'Total de recebimentos' }}
+          value={{
+            children: formatCurrency(
+              listCortes.reduce((total, corte) => total + corte.total, 0),
+            ),
+          }}
+        />
+
         <ListCorteTotalized
           onDelete={(corte: Corte) => {
             if (!corte.id) {
@@ -59,10 +70,6 @@ export function RevenueContainer() {
           }}
           listCortes={{
             cortes: listCortes,
-            totalized: listCortes.reduce(
-              (total, corte) => total + corte.total,
-              0,
-            ),
           }}
         />
       </ContainerBody>

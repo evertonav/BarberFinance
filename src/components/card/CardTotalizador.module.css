@@ -1,0 +1,13 @@
+.containerTotalCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 24px 20px;
+}
+
+.backGroundColorSecondary {
+  background: #cf8217;
+}
+.backGroundColorPrimary {
+  background: #28ae65;
+}

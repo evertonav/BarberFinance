@@ -20,6 +20,7 @@ import { CadDespesa } from './cadExpense/CadExpense'
 import { useExpenseContainer } from './ExpenseContainerHook'
 import type { Expense } from './types'
 import { GetUserLogado } from '../../utils/GetUser'
+import { CardTotalizador } from '../../components/card/CardTotalizador'
 
 export function ExpenseContainer() {
   const modalAddExpense = useRef<ContainerModalElement>(null)
@@ -51,18 +52,15 @@ export function ExpenseContainer() {
           {dateAndMonthView}
         </Navigation>
 
-        <ContainerRounded className={style.containerTotalCard}>
-          <LabelTitle color="White">Total de gastos</LabelTitle>
-          <LabelTitle
-            fontSize="20"
-            color="White"
-            className={style.totalExpense}
-          >
-            {formatCurrency(
+        <CardTotalizador
+          color="Secondary"
+          title={{ children: 'Total de despesas' }}
+          value={{
+            children: formatCurrency(
               listExpenseFront.reduce((acc, item) => acc + item.value, 0),
-            )}
-          </LabelTitle>
-        </ContainerRounded>
+            ),
+          }}
+        />
 
         {listExpenseFront.length > 0 && (
           <>
