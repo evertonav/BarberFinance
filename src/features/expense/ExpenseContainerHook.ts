@@ -44,6 +44,12 @@ export function useExpenseContainer() {
     })
   }, [listExpense])
 
+  const dateReference = useMemo(() => {
+    const dateNow = new Date()
+
+    return dateNow.getMonth() === dateInitial.getMonth() ? dateNow : dateInitial
+  }, [dateInitial])
+
   function atualizarListExpense() {
     invalidateQuery(
       QueryKeyGetListExpense(GetUserLogado(), dateInitial, dateFinish),
@@ -63,6 +69,7 @@ export function useExpenseContainer() {
     listExpenseFront,
     dateAndMonthView,
     nextMotnthAndYear,
+    dateReference,
     previousMonthAndYear,
   }
 }

@@ -1,9 +1,6 @@
 import { ContainerRounded } from '../../../../templates/containerRounded/ContainerRounded'
 import { ContainerRowWithSpaceBetween } from '../../../../templates/ContainerRowWithSpaceBetween/ContainerRowWithSpaceBetween'
-
 import style from './ListCorteTotalized.module.css'
-
-import { LabelTitle } from '../../../../components/labels/labelTitle/LabelTitle'
 import { ContainerLine } from '../../../../templates/ContainerLine/ContainerLine'
 import { Label } from '../../../../components/labels/Label'
 import type { ListCorteWithTotalized } from './types'

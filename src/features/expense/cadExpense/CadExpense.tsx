@@ -17,12 +17,12 @@ import type { Expense } from '../types'
 import InputCommonMUI from '../../../components/input/InputCommonMUI'
 
 interface CadExpenseProps {
-  // despesa?: Partial<Despesa>
+  expense?: Partial<Expense>
   onSuccess?: (expense: Expense) => void
   onCancel?: () => void
 }
 
-export function CadDespesa({ onSuccess, onCancel }: CadExpenseProps) {
+export function CadDespesa({ onSuccess, onCancel, expense }: CadExpenseProps) {
   const {
     register,
     handleSubmit,
@@ -32,9 +32,9 @@ export function CadDespesa({ onSuccess, onCancel }: CadExpenseProps) {
     resolver: zodResolver(schemaCadDespesa),
     mode: 'onChange',
     defaultValues: {
-      description: '',
-      value: '',
-      dateReferencia: new Date(),
+      description: expense?.description || '',
+      value: expense?.value?.toString() || '',
+      dateReferencia: expense?.dateReference || new Date(),
     },
   })
 

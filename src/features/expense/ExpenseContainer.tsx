@@ -6,7 +6,6 @@ import { Loading } from '../../components/loading/loading'
 import { Navigation } from '../../components/navigation/Navigation'
 import ShowIcon from '../../components/showIcon/ShowIcon'
 import { ContainerBody } from '../../templates/ContainerBody/ContainerBody'
-import { ContainerRounded } from '../../templates/containerRounded/ContainerRounded'
 import { Footer } from '../../templates/footer/Footer'
 import { HeaderSecondary } from '../../templates/header/HeaderSecondary'
 import { formatCurrency } from '../../utils/Format/FormatNumeric'
@@ -33,6 +32,7 @@ export function ExpenseContainer() {
     dateAndMonthView,
     nextMotnthAndYear,
     previousMonthAndYear,
+    dateReference,
   } = useExpenseContainer()
 
   function UpdateGetExpensesAndCloseModal() {
@@ -111,6 +111,7 @@ export function ExpenseContainer() {
 
         <ContainerModalFullScreen ref={modalAddExpense}>
           <CadDespesa
+            expense={{ dateReference: dateReference }}
             onCancel={() => {
               modalAddExpense.current?.close()
             }}
